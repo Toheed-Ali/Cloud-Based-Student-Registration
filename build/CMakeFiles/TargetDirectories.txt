@@ -1,0 +1,8 @@
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/btree_test.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/hashtable_test.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/database_test.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/server.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/timetable_test.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/ZERO_CHECK.dir
