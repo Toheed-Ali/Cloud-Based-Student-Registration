@@ -54,6 +54,9 @@ bool DatabaseManager::initialize() {
         cout << "[DatabaseManager] Created default admin account" << endl;
         cout << "  Email: admin@university.com" << endl;
         cout << "  Password: admin123" << endl;
+        
+        // IMPORTANT: Save immediately so indexes are persisted
+        saveAll();
     }
     
     return true;
