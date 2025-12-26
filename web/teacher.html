@@ -4,170 +4,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Portal</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Teacher Portal - University Management System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">👨‍🏫 Teacher Portal</div>
-            <div class="nav-menu">
-                <span id="user-name"></span>
-                <button class="btn btn-secondary" onclick="api.logout()">Logout</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div id="success-message" class="alert alert-success hidden"></div>
-        <div id="error-message" class="alert alert-error hidden"></div>
-
-        <!-- My Course -->
-        <div class="card">
-            <div class="card-header">📚 My Course</div>
-            <div id="loading-spinner" class="spinner hidden"></div>
-            <div id="course-info">
-                <p class="text-center" style="color: var(--text-light);">Loading course information...</p>
-            </div>
-        </div>
-
-        <!-- My Timetable -->
-        <div class="card">
-            <div class="card-header">📅 My Teaching Schedule</div>
-            <div id="timetable-content">
-                <p class="text-center" style="color: var(--text-light);">Loading timetable...</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
-    <script>
-        async function init() {
-            const auth = checkAuth();
-            if (!auth) return;
-
-            const userInfo = getUserInfo();
-            document.getElementById('user-name').textContent = userInfo.name;
-
-            loadCourse();
-            loadTimetable();
-        }
-
-        async function loadCourse() {
-            showLoading(true);
-
-            try {
-                // Mock data
-                const mockCourse = {
-                    courseID: 'CS301',
-                    courseName: 'Algorithms',
-                    semester: 3,
-                    enrolledStudents: 45,
-                    maxCapacity: 50
-                };
-
-                const courseDiv = document.getElementById('course-info');
-                courseDiv.innerHTML = `
-                    <div class="dashboard-grid">
-                        <div class="stat-card">
-                            <h3>Course ID</h3>
-                            <div class="value" style="font-size: 1.5rem;">${mockCourse.courseID}</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Course Name</h3>
-                            <div class="value" style="font-size: 1.5rem;">${mockCourse.courseName}</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Semester</h3>
-                            <div class="value">${mockCourse.semester}</div>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Students</h3>
-                            <div class="value">${mockCourse.enrolledStudents}</div>
-                        </div>
-                    </div>
-                `;
-
-            } catch (error) {
-                showError('Failed to load course: ' + error.message);
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        async function loadTimetable() {
-            const timetableDiv = document.getElementById('timetable-content');
-
-            // Mock timetable data
-            const mockTimetable = `
-                <div style="overflow-x: auto;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                                <th>Friday</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>9:00-10:30</td>
-                                <td>CS301<br><small>Room 101 - Class 3A</small></td>
-                                <td></td>
-                                <td></td>
-                                <td>CS301<br><small>Room 101 - Class 3B</small></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>10:30-12:00</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>13:00-14:30</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>14:30-16:00</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>16:00-17:30</td>
-                                <td>CS301<br><small>Room 101 - Lab</small></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="header-logo">
+                    <span class="header-logo-icon">👨‍🏫</span>
+                    <span>Teacher Portal</span>
                 </div>
-                <p class="mt-2" style="color: var(--text-light); font-size: 0.875rem;">
-                    Total teaching hours: 4.5 hours/week
-                </p>
-            `;
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="theme-toggle" onclick="themeManager.toggle()"
+                    aria-label="Toggle theme">
+                    🌙
+                </button>
+                <div class="header-user">
+                    <div class="header-user-avatar" style="background: linear-gradient(135deg, #1e7e34, #81c995);">T
+                    </div>
+                    <div class="header-user-name" id="user-name">Teacher</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </header>
 
-            timetableDiv.innerHTML = mockTimetable;
-        }
+        <!-- Main Layout -->
+        <div class="app-body">
+            <!-- Sidebar Navigation -->
+            <aside class="app-sidebar">
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" data-nav="dashboard">
+                        <span class="nav-item-icon">📊</span>
+                        <span class="nav-item-text">Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-nav="course">
+                        <span class="nav-item-icon">📚</span>
+                        <span class="nav-item-text">My Course</span>
+                    </div>
+                    <div class="nav-item" data-nav="students">
+                        <span class="nav-item-icon">👨‍🎓</span>
+                        <span class="nav-item-text">Students</span>
+                    </div>
+                    <div class="nav-item" data-nav="timetable">
+                        <span class="nav-item-icon">📅</span>
+                        <span class="nav-item-text">My Timetable</span>
+                    </div>
+                </nav>
+            </aside>
 
-        window.addEventListener('DOMContentLoaded', init);
-    </script>
+            <!-- Main Content -->
+            <main class="app-main">
+                <div class="main-content">
+                    <!-- Alerts -->
+                    <div id="success-message" class="alert alert-success hidden"></div>
+                    <div id="error-message" class="alert alert-error hidden"></div>
+
+                    <!-- Dashboard Section -->
+                    <section data-section="dashboard" class="visible">
+                        <h2 class="mb-lg">Teaching Dashboard</h2>
+
+                        <div class="grid grid-cols-3 mb-xl">
+                            <div class="stat-card">
+                                <div class="stat-card-label">Assigned Course</div>
+                                <div class="stat-card-value" id="course-name">Loading...</div>
+                            </div>
+                            <div class="stat-card success">
+                                <div class="stat-card-label">Enrolled Students</div>
+                                <div class="stat-card-value" id="enrolled-count">0</div>
+                            </div>
+                            <div class="stat-card warning">
+                                <div class="stat-card-label">Weekly Classes</div>
+                                <div class="stat-card-value" id="weekly-classes">3</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Quick Actions</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="grid grid-cols-2">
+                                    <button class="btn btn-primary" onclick="navManager.navigateTo('students')">
+                                        👨‍🎓 View Students
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="navManager.navigateTo('timetable')">
+                                        📅 View Timetable
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- My Course Section -->
+                    <section data-section="course" class="hidden">
+                        <h2 class="mb-lg">My Assigned Course</h2>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="grid grid-cols-2">
+                                    <div>
+                                        <h3 class="mb-sm">Course Information</h3>
+                                        <div class="form-group">
+                                            <label class="form-label">Course ID</label>
+                                            <input type="text" class="form-control" id="course-id" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Course Name</label>
+                                            <input type="text" class="form-control" id="course-title" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Semester</label>
+                                            <input type="text" class="form-control" id="course-semester" readonly>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mb-sm">Statistics</h3>
+                                        <div class="form-group">
+                                            <label class="form-label">Enrolled Students</label>
+                                            <input type="text" class="form-control" id="course-enrollment" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Capacity</label>
+                                            <input type="text" class="form-control" value="50" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Students Section -->
+                    <section data-section="students" class="hidden">
+                        <h2 class="mb-lg">Enrolled Students</h2>
+
+                        <div class="card">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Semester</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="students-list">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Timetable Section -->
+                    <section data-section="timetable" class="hidden">
+                        <h2 class="mb-lg">My Teaching Schedule</h2>
+
+                        <div class="card">
+                            <div id="timetable-content">
+                                <p class="text-center text-secondary">Loading timetable...</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme.js?v=2"></script>
+    <script src="js/navigation.js?v=2"></script>
+    <script src="js/api.js?v=2"></script>
+    <script src="js/auth.js?v=2"></script>
+    <script src="js/teacher-dashboard.js?v=1"></script>
 </body>
 
 </html>
