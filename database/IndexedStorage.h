@@ -231,27 +231,29 @@ bool IndexedStorage<T>::readEntity(size_t offset, T& entity) {
     return true;
 }
 
+// ==================== Helper for static_assert ====================
+// Must be defined BEFORE getID implementation
+
+template<typename> struct always_false : std::false_type {};
+
 // ==================== getID implementation using if constexpr ====================
 
 template<typename T>
 string IndexedStorage<T>::getID(const T& entity) {
-    if constexpr (is_same_v<T, Student>) {
+    if constexpr (std::is_same_v<T, Student>) {
         return entity.studentID;
-    } else if constexpr (is_same_v<T, Course>) {
+    } else if constexpr (std::is_same_v<T, Course>) {
         return entity.courseID;
-    } else if constexpr (is_same_v<T, Teacher>) {
+    } else if constexpr (std::is_same_v<T, Teacher>) {
         return entity.teacherID;
-    } else if constexpr (is_same_v<T, User>) {
+    } else if constexpr (std::is_same_v<T, User>) {
         return entity.userID;
-    } else if constexpr (is_same_v<T, Timetable>) {
-        return to_string(entity.semesterNumber);
+    } else if constexpr (std::is_same_v<T, Timetable>) {
+        return std::to_string(entity.semesterNumber);
     } else {
         static_assert(always_false<T>::value, "getID not implemented for this type");
         return "";
     }
 }
-
-// Helper for static_assert
-template<typename> struct always_false : std::false_type {};
 
 #endif // INDEXED_STORAGE_H
