@@ -303,7 +303,7 @@ string IndexedStorage<T>::getID(const T& entity) {
     } else if constexpr (is_same_v<T, Teacher>) {
         return entity.teacherID;
     } else if constexpr (is_same_v<T, User>) {
-        return entity.userID;
+        return entity.email;  // Use email as unique identifier for login
     } else if constexpr (is_same_v<T, Timetable>) {
         return to_string(entity.semesterNumber);
     } else {
