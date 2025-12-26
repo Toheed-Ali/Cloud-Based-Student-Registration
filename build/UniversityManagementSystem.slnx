@@ -9,37 +9,49 @@
 	</Configurations>
 	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="301a8adf-ca40-3231-9cf5-68cd82e54e1b" DefaultStartup="true">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
-		<BuildDependency Project="btree_test.vcxproj"/>
-		<BuildDependency Project="database_test.vcxproj"/>
-		<BuildDependency Project="hashtable_test.vcxproj"/>
+		<BuildDependency Project="admin_cli.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+		<BuildDependency Project="enroll_batch_students.vcxproj"/>
+		<BuildDependency Project="populate_all_semesters.vcxproj"/>
 		<BuildDependency Project="server.vcxproj"/>
-		<BuildDependency Project="timetable_test.vcxproj"/>
-		<Build Solution="Debug|*" Project="false"/>
-		<Build Solution="Release|*" Project="false"/>
-		<Build Solution="MinSizeRel|*" Project="false"/>
-		<Build Solution="RelWithDebInfo|*" Project="false"/>
-	</Project>
-	<Project Path="RUN_TESTS.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="6bd6b567-b7ee-3986-a1e3-d4ace0b68b7c">
-		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="student_cli.vcxproj"/>
+		<BuildDependency Project="teacher_cli.vcxproj"/>
+		<BuildDependency Project="test_indexed_storage.vcxproj"/>
 		<Build Solution="Debug|*" Project="false"/>
 		<Build Solution="Release|*" Project="false"/>
 		<Build Solution="MinSizeRel|*" Project="false"/>
 		<Build Solution="RelWithDebInfo|*" Project="false"/>
 	</Project>
 	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="d7767801-bbfd-364d-b0dc-28a15ca9ccc3"/>
-	<Project Path="btree_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="77fdf4b2-8906-30af-aaeb-c1d4b91c94ad">
+	<Project Path="admin_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="050f5c89-95d0-3945-9576-36ad0b90a180">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+	</Project>
+	<Project Path="database.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="441eaa44-a16b-3744-a1bc-7593ff760476">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="database_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="3cf4032c-0102-3f61-a010-9437923722f3">
+	<Project Path="enroll_batch_students.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="98b5512d-16ff-397d-912b-4a26f2c0d4db">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="hashtable_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="27ed5c31-7a39-34c5-b144-fc02ad4ffbaa">
+	<Project Path="populate_all_semesters.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="79583084-b4f6-3450-b4f1-368999d29ff8">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
 	</Project>
 	<Project Path="server.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c41830a0-d2ed-3ce8-86e0-ae5674f85447">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="timetable_test.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="3cddfb6a-0306-3746-b168-c8cebd1931e8">
+	<Project Path="student_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="faf85ff1-6c29-3903-9269-336396d7cb39">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+	</Project>
+	<Project Path="teacher_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="d2a69451-2052-3f5c-aec3-3ff902835b3a">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+	</Project>
+	<Project Path="test_indexed_storage.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0d945663-c970-3b41-bd3c-54a438c2d51e">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
 	</Project>
 </Solution>

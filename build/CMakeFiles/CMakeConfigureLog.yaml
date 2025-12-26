@@ -48,18 +48,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -71,8 +78,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "message-v1"
     backtrace:
@@ -89,7 +95,7 @@ events:
       The output was:
       0
       MSBuild version 18.0.2+995a3dce4 for .NET Framework
-      Build started 12/3/2025 8:23:36 PM.
+      Build started 12/9/2025 3:14:01 PM.
       
       Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -100,20 +106,20 @@ events:
         Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
       VcpkgTripletSelection:
-        Using triplet "x64-windows" from "C:\\dev\\vcpkg\\installed\\x64-windows\\"
+        Using triplet "x64-windows" from "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\"
         Using normalized configuration "Release"
       ClCompile:
-        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
         CMakeCCompilerId.c
       Link:
-        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\dev\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
         CompilerIdC.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -127,7 +133,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.81
+      Time Elapsed 00:00:01.63
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -173,6 +179,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -185,8 +193,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
@@ -205,18 +212,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -228,8 +242,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -266,6 +279,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -278,8 +293,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
@@ -323,6 +337,12 @@ events:
       - "C:/Program Files/CMake/bin/lld-link.com"
       - "C:/Program Files/CMake/bin/lld-link.exe"
       - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link.com"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link.exe"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link.com"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link.exe"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link"
@@ -359,12 +379,9 @@ events:
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link.com"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link.exe"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link.com"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link.exe"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link.com"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link.exe"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link"
+      - "C:/Program Fil/lld-link.com"
+      - "C:/Program Fil/lld-link.exe"
+      - "C:/Program Fil/lld-link"
     found: false
     search_context:
       ENV{PATH}:
@@ -381,18 +398,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -404,8 +428,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -440,6 +463,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -452,8 +477,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
@@ -472,18 +496,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -495,8 +526,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -531,6 +561,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -543,8 +575,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.exe"
@@ -588,6 +619,12 @@ events:
       - "C:/Program Files/CMake/bin/mt.com"
       - "C:/Program Files/CMake/bin/mt.exe"
       - "C:/Program Files/CMake/bin/mt"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt"
+      - "C:/Program Files/Amazon/AWSCLIV2/mt.com"
+      - "C:/Program Files/Amazon/AWSCLIV2/mt.exe"
+      - "C:/Program Files/Amazon/AWSCLIV2/mt"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/mt.com"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/mt.exe"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/mt"
@@ -624,12 +661,9 @@ events:
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/mt.com"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/mt.exe"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/mt"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/mt.com"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/mt.exe"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/mt"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/mt.com"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/mt.exe"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/mt"
+      - "C:/Program Fil/mt.com"
+      - "C:/Program Fil/mt.exe"
+      - "C:/Program Fil/mt"
     found: false
     search_context:
       ENV{PATH}:
@@ -646,18 +680,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -669,8 +710,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -705,6 +745,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -717,8 +759,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.com"
     found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.exe"
@@ -737,18 +778,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -760,8 +808,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -802,18 +849,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -825,8 +879,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "message-v1"
     backtrace:
@@ -843,7 +896,7 @@ events:
       The output was:
       0
       MSBuild version 18.0.2+995a3dce4 for .NET Framework
-      Build started 12/3/2025 8:23:39 PM.
+      Build started 12/9/2025 3:14:03 PM.
       
       Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -854,20 +907,20 @@ events:
         Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
       VcpkgTripletSelection:
-        Using triplet "x64-windows" from "C:\\dev\\vcpkg\\installed\\x64-windows\\"
+        Using triplet "x64-windows" from "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\"
         Using normalized configuration "Release"
       ClCompile:
-        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc145.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
         CMakeCXXCompilerId.cpp
       Link:
-        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\dev\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
         CompilerIdCXX.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\4.2.0\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -881,7 +934,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.24
+      Time Elapsed 00:00:01.74
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -927,6 +980,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -939,8 +994,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
     searched_directories:
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
@@ -984,6 +1038,12 @@ events:
       - "C:/Program Files/CMake/bin/lld-link.com"
       - "C:/Program Files/CMake/bin/lld-link.exe"
       - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link.com"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link.exe"
+      - "C:/Program Files/Amazon/AWSCLIV2/lld-link"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link.com"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link.exe"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/lld-link"
@@ -1020,12 +1080,9 @@ events:
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link.com"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link.exe"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/lld-link"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link.com"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link.exe"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/lld-link"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link.com"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link.exe"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/lld-link"
+      - "C:/Program Fil/lld-link.com"
+      - "C:/Program Fil/lld-link.exe"
+      - "C:/Program Fil/lld-link"
     found: false
     search_context:
       ENV{PATH}:
@@ -1042,18 +1099,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -1065,8 +1129,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
   -
     kind: "find-v1"
     backtrace:
@@ -1103,6 +1166,8 @@ events:
       - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
       - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Program Files/Amazon/AWSCLIV2/"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/"
       - "C:/Program Files/Android/Android Studio/jbr/bin/"
       - "C:/Users/User/AppData/Local/Programs/Python/Launcher/"
@@ -1115,8 +1180,7 @@ events:
       - "C:/flutter/bin/"
       - "C:/Users/User/AppData/Roaming/npm/"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/"
+      - "C:/Program Fil/"
       - "C:/Program Files/bin/"
       - "C:/Program Files/sbin/"
       - "C:/Program Files/"
@@ -1169,6 +1233,12 @@ events:
       - "C:/Program Files/CMake/bin/rc.com"
       - "C:/Program Files/CMake/bin/rc.exe"
       - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files/Docker/Docker/resources/bin/rc.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/rc.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/rc"
+      - "C:/Program Files/Amazon/AWSCLIV2/rc.com"
+      - "C:/Program Files/Amazon/AWSCLIV2/rc.exe"
+      - "C:/Program Files/Amazon/AWSCLIV2/rc"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/rc.com"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/rc.exe"
       - "C:/Program Files/MySQL/MySQL Shell 8.0/bin/rc"
@@ -1205,12 +1275,9 @@ events:
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/rc.com"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/rc.exe"
       - "C:/Users/User/AppData/Local/Programs/Antigravity/bin/rc"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/rc.com"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/rc.exe"
-      - "C:/Program Files/MySQL/MySQL Server 8.0/bin/rc"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/rc.com"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/rc.exe"
-      - "C:/Users/User/AppData/Local/Pub/Cache/bin/rc"
+      - "C:/Program Fil/rc.com"
+      - "C:/Program Fil/rc.exe"
+      - "C:/Program Fil/rc"
       - "C:/Program Files/bin/rc.com"
       - "C:/Program Files/bin/rc.exe"
       - "C:/Program Files/bin/rc"
@@ -1263,18 +1330,25 @@ events:
         - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
         - "C:\\Program Files\\CMake\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
-        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
         - "C:\\Windows\\system32"
         - "C:\\Windows"
         - "C:\\Windows\\System32\\Wbem"
         - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
         - "C:\\Windows\\System32\\OpenSSH\\"
-        - "C:\\Program Files\\Git\\cmd"
         - "C:\\ProgramData\\chocolatey\\bin"
-        - "C:\\Program Files\\nodejs\\"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
         - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Program Files\\Amazon\\AWSCLIV2\\"
+        - "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\"
+        - "C:\\Program Files\\Android\\Android Studio\\jbr\\bin"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Launcher\\"
         - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
@@ -1286,8 +1360,7 @@ events:
         - "C:\\Users\\User\\.dotnet\\tools"
         - "C:\\Users\\User\\AppData\\Roaming\\npm"
         - "C:\\Users\\User\\AppData\\Local\\Programs\\Antigravity\\bin"
-        - "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin"
-        - "C:\\Users\\User\\AppData\\Local\\Pub\\Cache\\bin"
+        - "C:\\Program Fil"
       CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/UniversityManagementSystem"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
@@ -1303,8 +1376,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-b412p3"
-      binary: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-b412p3"
+      source: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-rta38k"
+      binary: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-rta38k"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1313,48 +1386,48 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-b412p3'
+        Change Dir: 'C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-rta38k'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_69e35.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2d782.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         MSBuild version 18.0.2+995a3dce4 for .NET Framework
-        Build started 12/3/2025 8:23:41 PM.
+        Build started 12/9/2025 3:14:06 PM.
         
-        Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\cmTC_69e35.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\cmTC_2d782.vcxproj" on node 1 (default targets).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\".
-          Creating directory "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\".
+          Creating directory "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\".
+          Creating directory "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\unsuccessfulbuild".
+          Creating "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
-          Using triplet "x64-windows" from "C:\\dev\\vcpkg\\installed\\x64-windows\\"
+          Using triplet "x64-windows" from "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_69e35.dir\\Debug\\\\" /Fd"cmTC_69e35.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_2d782.dir\\Debug\\\\" /Fd"cmTC_2d782.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.50.35717 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_69e35.dir\\Debug\\\\" /Fd"cmTC_69e35.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_2d782.dir\\Debug\\\\" /Fd"cmTC_2d782.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\cmTC_69e35.exe" /INCREMENTAL /ILK:"cmTC_69e35.dir\\Debug\\cmTC_69e35.ilk" /NOLOGO /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-b412p3/Debug/cmTC_69e35.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-b412p3/Debug/cmTC_69e35.lib" /MACHINE:X64  /machine:x64 cmTC_69e35.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_69e35.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\cmTC_69e35.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\cmTC_2d782.exe" /INCREMENTAL /ILK:"cmTC_2d782.dir\\Debug\\cmTC_2d782.ilk" /NOLOGO /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-rta38k/Debug/cmTC_2d782.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-rta38k/Debug/cmTC_2d782.lib" /MACHINE:X64  /machine:x64 cmTC_2d782.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_2d782.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\cmTC_2d782.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\cmTC_69e35.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\cmTC_69e35.write.1u.tlog" "cmTC_69e35.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\cmTC_2d782.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\cmTC_2d782.write.1u.tlog" "cmTC_2d782.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\cmTC_69e35.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\cmTC_69e35.write.1u.tlog" "cmTC_69e35.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\Debug\\cmTC_69e35.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\cmTC_69e35.write.1u.tlog" "cmTC_69e35.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\cmTC_2d782.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\cmTC_2d782.write.1u.tlog" "cmTC_2d782.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\Debug\\cmTC_2d782.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\cmTC_2d782.write.1u.tlog" "cmTC_2d782.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\unsuccessfulbuild".
-          Touching "cmTC_69e35.dir\\Debug\\cmTC_69e35.tlog\\cmTC_69e35.lastbuildstate".
-        Done Building Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-b412p3\\cmTC_69e35.vcxproj" (default targets).
+          Deleting file "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\unsuccessfulbuild".
+          Touching "cmTC_2d782.dir\\Debug\\cmTC_2d782.tlog\\cmTC_2d782.lastbuildstate".
+        Done Building Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rta38k\\cmTC_2d782.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.44
+        Time Elapsed 00:00:01.42
         
       exitCode: 0
   -
@@ -1394,8 +1467,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-qqnnp4"
-      binary: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-qqnnp4"
+      source: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-jdd3p9"
+      binary: "C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-jdd3p9"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1405,48 +1478,48 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-qqnnp4'
+        Change Dir: 'C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-jdd3p9'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e9766.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e0f96.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         MSBuild version 18.0.2+995a3dce4 for .NET Framework
-        Build started 12/3/2025 8:23:43 PM.
+        Build started 12/9/2025 3:14:08 PM.
         
-        Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\cmTC_e9766.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\cmTC_e0f96.vcxproj" on node 1 (default targets).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\".
-          Creating directory "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\".
+          Creating directory "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\".
+          Creating directory "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\unsuccessfulbuild".
+          Creating "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
-          Using triplet "x64-windows" from "C:\\dev\\vcpkg\\installed\\x64-windows\\"
+          Using triplet "x64-windows" from "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e9766.dir\\Debug\\\\" /Fd"cmTC_e9766.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e0f96.dir\\Debug\\\\" /Fd"cmTC_e0f96.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.50.35717 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\dev\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e9766.dir\\Debug\\\\" /Fd"cmTC_e9766.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_e0f96.dir\\Debug\\\\" /Fd"cmTC_e0f96.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\cmTC_e9766.exe" /INCREMENTAL /ILK:"cmTC_e9766.dir\\Debug\\cmTC_e9766.ilk" /NOLOGO /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-qqnnp4/Debug/cmTC_e9766.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-qqnnp4/Debug/cmTC_e9766.lib" /MACHINE:X64  /machine:x64 cmTC_e9766.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_e9766.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\cmTC_e9766.exe
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\cmTC_e0f96.exe" /INCREMENTAL /ILK:"cmTC_e0f96.dir\\Debug\\cmTC_e0f96.ilk" /NOLOGO /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-jdd3p9/Debug/cmTC_e0f96.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/User/Pictures/BSCS-24119-PROJECT-3/build/CMakeFiles/CMakeScratch/TryCompile-jdd3p9/Debug/cmTC_e0f96.lib" /MACHINE:X64  /machine:x64 cmTC_e0f96.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_e0f96.vcxproj -> C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\cmTC_e0f96.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\cmTC_e9766.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\cmTC_e9766.write.1u.tlog" "cmTC_e9766.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\cmTC_e0f96.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\cmTC_e0f96.write.1u.tlog" "cmTC_e0f96.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\cmTC_e9766.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\cmTC_e9766.write.1u.tlog" "cmTC_e9766.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\dev\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\Debug\\cmTC_e9766.exe" "C:\\dev\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\cmTC_e9766.write.1u.tlog" "cmTC_e9766.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\cmTC_e0f96.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\cmTC_e0f96.write.1u.tlog" "cmTC_e0f96.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\User\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\Debug\\cmTC_e0f96.exe" "C:\\Users\\User\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\cmTC_e0f96.write.1u.tlog" "cmTC_e0f96.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\unsuccessfulbuild".
-          Touching "cmTC_e9766.dir\\Debug\\cmTC_e9766.tlog\\cmTC_e9766.lastbuildstate".
-        Done Building Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qqnnp4\\cmTC_e9766.vcxproj" (default targets).
+          Deleting file "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\unsuccessfulbuild".
+          Touching "cmTC_e0f96.dir\\Debug\\cmTC_e0f96.tlog\\cmTC_e0f96.lastbuildstate".
+        Done Building Project "C:\\Users\\User\\Pictures\\BSCS-24119-PROJECT-3\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jdd3p9\\cmTC_e0f96.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.44
+        Time Elapsed 00:00:01.32
         
       exitCode: 0
   -
