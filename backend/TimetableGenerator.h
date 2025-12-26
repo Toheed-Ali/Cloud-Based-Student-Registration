@@ -86,7 +86,7 @@ private:
         // IMPROVED: Group slots by day to enable intelligent distribution
         map<int, vector<TimeSlot>> slotsByDay;
         for (const auto& slot : candidates) {
-            slotsByDay[slot.dayOfWeek].push_back(slot);
+            slotsByDay[slot.day].push_back(slot);
         }
         
         // Strategy: Spread sessions across different days when possible
@@ -105,7 +105,7 @@ private:
                 // Check if this slot is not already selected
                 bool alreadySelected = false;
                 for (const auto& selected : selectedSlots) {
-                    if (selected.dayOfWeek == slot.dayOfWeek && selected.startHour == slot.startHour) {
+                    if (selected.day == slot.day && selected.hour == slot.hour) {
                         alreadySelected = true;
                         break;
                     }
