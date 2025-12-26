@@ -101,11 +101,44 @@ int main() {
     
     dataFile.close();
     
+    cout << "\n--- Processing Course Enrollments ---" << endl;
+    cout << "Updating course enrollment lists...\n" << endl;
+    
+    // Now update all courses to include enrolled students
+    vector<Student> allStudents = db.getAllStudents();
+    map<string, vector<string>> courseEnrollments; // courseID -> list of studentIDs
+    
+    // Collect all enrollments
+    for (const auto& student : allStudents) {
+        for (const auto& courseID : student.enrolledCourses) {
+            courseEnrollments[courseID].push_back(student.studentID);
+        }
+    }
+    
+    // Update each course
+    int coursesUpdated = 0;
+    for (const auto& pair : courseEnrollments) {
+        string courseID = pair.first;
+        const vector<string>& studentIDs = pair.second;
+        
+        Course course;
+        if (db.getCourse(courseID, course)) {
+            course.enrolledStudents = studentIDs;
+            course.currentEnrollmentCount = studentIDs.size();
+            
+            if (db.updateCourse(course)) {
+                cout << "✓ Updated " << courseID << ": " << studentIDs.size() << " students enrolled" << endl;
+                coursesUpdated++;
+            }
+        }
+    }
+    
     cout << "\n========================================" << endl;
     cout << "Summary:" << endl;
     cout << "  Students added: " << added << endl;
     cout << "  Students skipped: " << skipped << endl;
     cout << "  Total enrollments: " << enrolled << endl;
+    cout << "  Courses updated: " << coursesUpdated << endl;
     cout << "========================================" << endl;
     cout << "\nDefault password for all students: last 4 digits of Student ID" << endl;
     cout << "Example: BSCS24119 → password: 4119" << endl;
