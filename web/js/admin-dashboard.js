@@ -344,12 +344,28 @@ async function loadCourses() {
         }
 
         const results = await Promise.all(promises);
-        allCourses = [];
+
+        // Use a Map to prevent duplicates (key by courseID)
+        const coursesMap = new Map();
 
         results.forEach(data => {
             if (data.success === 'true' && data.courses) {
-                allCourses = allCourses.concat(data.courses);
+                data.courses.forEach(course => {
+                    // Only add if not already in map, or update if this one is newer
+                    if (!coursesMap.has(course.courseID)) {
+                        coursesMap.set(course.courseID, course);
+                    }
+                });
             }
+        });
+
+        // Convert map back to array
+        allCourses = Array.from(coursesMap.values());
+
+        // Sort by semester then courseID
+        allCourses.sort((a, b) => {
+            if (a.semester !== b.semester) return a.semester - b.semester;
+            return a.courseID.localeCompare(b.courseID);
         });
 
         renderCourses();
@@ -373,7 +389,7 @@ function renderCourses() {
             <td>${c.courseName}</td>
             <td>${c.semester}</td>
             <td>${c.teacherID || 'Not Assigned'}</td>
-            <td><span class="badge badge-primary">${c.enrollmentCount || 0}/50</span></td>
+            <td><span class="badge badge-primary">${c.currentEnrollmentCount || c.enrollmentCount || 0}/50</span></td>
         </tr>
     `).join('');
 }
