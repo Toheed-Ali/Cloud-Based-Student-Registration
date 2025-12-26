@@ -83,13 +83,42 @@ private:
             return false;  // Not enough valid slots
         }
         
-        // Simple greedy: pick first N slots (could be improved with day diversity)
-        selectedSlots.clear();
-        for (int i = 0; i < numSlots && i < candidates.size(); i++) {
-            selectedSlots.push_back(candidates[i]);
+        // IMPROVED: Group slots by day to enable intelligent distribution
+        map<int, vector<TimeSlot>> slotsByDay;
+        for (const auto& slot : candidates) {
+            slotsByDay[slot.dayOfWeek].push_back(slot);
         }
         
-        return true;
+        // Strategy: Spread sessions across different days when possible
+        selectedSlots.clear();
+        
+        // First, try to pick one slot from each different day
+        for (const auto& pair : slotsByDay) {
+            if (selectedSlots.size() >= numSlots) break;
+            selectedSlots.push_back(pair.second[0]); // Pick first available slot from this day
+        }
+        
+        // If we still need more slots (e.g., need 3 slots but only 2 days available),
+        // fill remaining slots from any available day
+        if (selectedSlots.size() < numSlots) {
+            for (const auto& slot : candidates) {
+                // Check if this slot is not already selected
+                bool alreadySelected = false;
+                for (const auto& selected : selectedSlots) {
+                    if (selected.dayOfWeek == slot.dayOfWeek && selected.startHour == slot.startHour) {
+                        alreadySelected = true;
+                        break;
+                    }
+                }
+                
+                if (!alreadySelected) {
+                    selectedSlots.push_back(slot);
+                    if (selectedSlots.size() >= numSlots) break;
+                }
+            }
+        }
+        
+        return selectedSlots.size() == numSlots;
     }
     
     // Backtracking algorithm for multi-session courses
