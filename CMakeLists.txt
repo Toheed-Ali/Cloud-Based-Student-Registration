@@ -55,8 +55,13 @@ add_executable(populate_all_semesters
     utils/populate_all_semesters.cpp
 )
 
+add_executable(populate_courses
+    utils/populate_courses.cpp
+)
+
 target_link_libraries(enroll_batch_students database)
 target_link_libraries(populate_all_semesters database)
+target_link_libraries(populate_courses database)
 
 # Test IndexedStorage
 add_executable(test_indexed_storage
