@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <cstdint>
 
 using namespace std;
 
@@ -77,10 +78,11 @@ inline string SHA256::hash(const string& input) {
     // For simplicity, we'll use a basic hash for now
     // In production, use a proper SHA-256 implementation
     
-    // Simple hash function (NOT actual SHA-256, but sufficient for demo)
-    unsigned long hash = 5381;
-    for (char c : input) {
-        hash = ((hash << 5) + hash) + c;
+    // DJB2 hash function (deterministic)
+    // Use uint64_t to ensure consistent behavior across platforms
+    uint64_t hash = 5381;
+    for (unsigned char c : input) {
+        hash = ((hash << 5) + hash) + c;  // hash * 33 + c
     }
     
     stringstream ss;
