@@ -1,0 +1,64 @@
+# Build directories
+build/
+cmake-build-*/
+Release/
+Debug/
+out/
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.obj
+*.o
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.sln.docstates
+.vscode/
+
+# Database files (keep structure, not data)
+data/*.dat
+data/*.btree
+data/*.hash
+build/Release/data/*.dat
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+
+# Build artifacts
+test_data/
+build_error.txt
+*.user
+
+# Keep example data structure
+!data/.gitkeep
+!build/Release/data/.gitkeep
