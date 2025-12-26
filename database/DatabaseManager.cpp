@@ -115,8 +115,15 @@ bool DatabaseManager::authenticateUser(const string& email, const string& passwo
         return false;
     }
     
+    cout << "[DB] User found!" << endl;
+    
     // Verify password hash
     string hashedPassword = SHA256::hash(password);
+    
+    cout << "[DB] Stored hash: '" << outUser.passwordHash << "'" << endl;
+    cout << "[DB] Input hash:  '" << hashedPassword << "'" << endl;
+    cout << "[DB] Match: " << (outUser.passwordHash == hashedPassword ? "YES" : "NO") << endl;
+    
     return outUser.passwordHash == hashedPassword;
 }
 
