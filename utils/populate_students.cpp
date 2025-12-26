@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-<parameter name="sstream">
+#include <sstream>
 #include <vector>
 #include "../database/DatabaseManager.h"
 #include "../database/DataModels.h"
@@ -83,24 +83,16 @@ int main() {
         student.studentID = studentID;
         student.email = email;
         student.name = name;
-        student.semester = semester;
-        student.contact = contact;
+        student.currentSemester = semester;
+        student.contactInfo = contact;
         student.enrolledCourses = courses;
+        student.dateOfAdmission = time(nullptr);
         
         if (db.addStudent(student)) {
             cout << "✓ Added: " << studentID << " - " << name << " (Sem " << semester << ")";
-            
-            // Enroll in courses
-            int courseCount = 0;
-            for (const auto& courseID : courses) {
-                if (db.enrollInCourse(studentID, courseID)) {
-                    courseCount++;
-                    enrolled++;
-                }
-            }
-            
-            cout << " → Enrolled in " << courseCount << "/" << courses.size() << " courses" << endl;
+            cout << " → Pre-enrolled in " << courses.size() << " courses" << endl;
             added++;
+            enrolled += courses.size();
         } else {
             cout << "✗ Failed to add student: " << studentID << endl;
             skipped++;
