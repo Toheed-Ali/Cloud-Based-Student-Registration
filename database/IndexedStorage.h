@@ -31,11 +31,15 @@ private:
     // Get entity ID (must specialize for each type)
     string getID(const T& entity);
     
-    // Write entity to data file, return offset
+    // Write entity to data file, return offset (line number)
     size_t writeEntity(const T& entity, size_t offset = 0);
     
-    // Read entity from data file at offset
+    // Read entity from data file at offset (line number)
     bool readEntity(size_t offset, T& entity);
+    
+    // Serialization helpers (use existing Serialization.h)
+    string serializeEntity(const T& entity);
+    T deserializeEntity(const string& data);
     
 public:
     IndexedStorage(const string& baseName);
@@ -173,62 +177,116 @@ void IndexedStorage<T>::clear() {
     remove(dataFilename.c_str());
 }
 
-// ==================== File I/O Helpers ====================
+// ==================== File I/O Helpers (TEXT-BASED for portability) ====================
 
 template<typename T>
 size_t IndexedStorage<T>::writeEntity(const T& entity, size_t offset) {
-    fstream file;
+    // Use text-based line storage for portability
+    // Each entity is one line in the file
     
-    if (offset == 0) {
-        // Append to end
-        file.open(dataFilename, ios::in | ios::out | ios::binary | ios::ate);
-        if (!file.is_open()) {
-            // Create new file
-            file.open(dataFilename, ios::out | ios::binary);
-            file.close();
-            file.open(dataFilename, ios::in | ios::out | ios::binary | ios::ate);
+    // Read all existing lines
+    vector<string> lines;
+    ifstream inFile(dataFilename);
+    if (inFile.is_open()) {
+        string line;
+        while (getline(inFile, line)) {
+            lines.push_back(line);
         }
-        offset = file.tellp();
-    } else {
-        // Overwrite at specific offset
-        file.open(dataFilename, ios::in | ios::out | ios::binary);
-        file.seekp(offset);
+        inFile.close();
     }
     
-    if (!file.is_open()) {
-        cerr << "Failed to open data file: " << dataFilename << endl;
+    // Serialize the entity to text
+    string serialized = serializeEntity(entity);
+    
+    if (offset == 0) {
+        // Append new entity
+        offset = lines.size();
+        lines.push_back(serialized);
+    } else {
+        // Update existing entity at offset (offset is line number)
+        if (offset < lines.size()) {
+            lines[offset] = serialized;
+        } else {
+            // Shouldn't happen, but handle gracefully
+            offset = lines.size();
+            lines.push_back(serialized);
+        }
+    }
+    
+    // Write all lines back
+    ofstream outFile(dataFilename);
+    if (!outFile.is_open()) {
+        cerr << "Failed to open data file for writing: " << dataFilename << endl;
         return 0;
     }
     
-    // Write entity size first
-    size_t entitySize = sizeof(T);
-    file.write(reinterpret_cast<const char*>(&entitySize), sizeof(size_t));
+    for (const auto& line : lines) {
+        outFile << line << "\n";
+    }
+    outFile.close();
     
-    // Write entity data
-    file.write(reinterpret_cast<const char*>(&entity), sizeof(T));
-    
-    file.close();
     return offset;
 }
 
 template<typename T>
 bool IndexedStorage<T>::readEntity(size_t offset, T& entity) {
-    ifstream file(dataFilename, ios::binary);
+    ifstream file(dataFilename);
     if (!file.is_open()) {
         return false;
     }
     
-    file.seekg(offset);
-    
-    // Read entity size
-    size_t entitySize;
-    file.read(reinterpret_cast<char*>(&entitySize), sizeof(size_t));
-    
-    // Read entity data
-    file.read(reinterpret_cast<char*>(&entity), sizeof(T));
+    // offset is line number
+    string line;
+    size_t currentLine = 0;
+    while (getline(file, line)) {
+        if (currentLine == offset) {
+            file.close();
+            entity = deserializeEntity(line);
+            return true;
+        }
+        currentLine++;
+    }
     
     file.close();
-    return true;
+    return false;
+}
+
+// ==================== Serialization Helpers (using existing Serialization.h) ====================
+
+#include "Serialization.h"
+
+template<typename T>
+string IndexedStorage<T>::serializeEntity(const T& entity) {
+    if constexpr (is_same_v<T, Student>) {
+        return Serializer::serializeStudent(entity);
+    } else if constexpr (is_same_v<T, Course>) {
+        return Serializer::serializeCourse(entity);
+    } else if constexpr (is_same_v<T, Teacher>) {
+        return Serializer::serializeTeacher(entity);
+    } else if constexpr (is_same_v<T, User>) {
+        return Serializer::serializeUser(entity);
+    } else if constexpr (is_same_v<T, Timetable>) {
+        return Serializer::serializeTimetable(entity);
+    } else {
+        return "";
+    }
+}
+
+template<typename T>
+T IndexedStorage<T>::deserializeEntity(const string& data) {
+    if constexpr (is_same_v<T, Student>) {
+        return Serializer::deserializeStudent(data);
+    } else if constexpr (is_same_v<T, Course>) {
+        return Serializer::deserializeCourse(data);
+    } else if constexpr (is_same_v<T, Teacher>) {
+        return Serializer::deserializeTeacher(data);
+    } else if constexpr (is_same_v<T, User>) {
+        return Serializer::deserializeUser(data);
+    } else if constexpr (is_same_v<T, Timetable>) {
+        return Serializer::deserializeTimetable(data);
+    } else {
+        return T();
+    }
 }
 
 // ==================== getID implementation using if constexpr ====================
