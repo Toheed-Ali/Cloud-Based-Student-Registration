@@ -80,7 +80,7 @@ int main() {
         teacher.teacherID = teacherID;
         teacher.email = email;
         teacher.name = name;
-        teacher.assignedCourses.push_back(assignedCourse);
+        teacher.assignedCourseID = assignedCourse;
         teacher.department = department;
         teacher.contactInfo = contact;
         
