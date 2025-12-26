@@ -26,7 +26,7 @@ class APIClient {
             });
 
             const data = await response.json();
-            
+
             if (!response.ok) {
                 throw new Error(data.error || 'Request failed');
             }
@@ -40,7 +40,7 @@ class APIClient {
 
     // Auth endpoints
     async login(email, password) {
-        const data = await this.request('/auth/login', {
+        const data = await this.request('/login', {
             method: 'POST',
             body: JSON.stringify({ email, password })
         });

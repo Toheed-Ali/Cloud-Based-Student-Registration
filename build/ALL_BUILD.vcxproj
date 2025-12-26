@@ -182,13 +182,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{441EAA44-A16B-3744-A1BC-7593FF760476}</Project>
       <Name>database</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\enroll_batch_students.vcxproj">
-      <Project>{98B5512D-16FF-397D-912B-4A26F2C0D4DB}</Project>
-      <Name>enroll_batch_students</Name>
+    <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\populate_courses.vcxproj">
+      <Project>{31A0D2EA-6FC8-3442-B422-302C568FACF8}</Project>
+      <Name>populate_courses</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\populate_all_semesters.vcxproj">
-      <Project>{79583084-B4F6-3450-B4F1-368999D29FF8}</Project>
-      <Name>populate_all_semesters</Name>
+    <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\populate_students.vcxproj">
+      <Project>{2ADEAB4D-6033-3438-B8D9-7575917B774D}</Project>
+      <Name>populate_students</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\populate_teachers.vcxproj">
+      <Project>{98931128-03D7-3253-B471-A4B80203D3BB}</Project>
+      <Name>populate_teachers</Name>
     </ProjectReference>
     <ProjectReference Include="C:\Users\User\Pictures\BSCS-24119-PROJECT-3\build\server.vcxproj">
       <Project>{C41830A0-D2ED-3CE8-86E0-AE5674F85447}</Project>

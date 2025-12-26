@@ -47,14 +47,6 @@ target_link_libraries(student_cli database)
 target_link_libraries(teacher_cli database)
 
 # Utility programs
-add_executable(enroll_batch_students
-    utils/enroll_batch_students.cpp
-)
-
-add_executable(populate_all_semesters
-    utils/populate_all_semesters.cpp
-)
-
 add_executable(populate_courses
     utils/populate_courses.cpp
 )
@@ -67,8 +59,6 @@ add_executable(populate_teachers
     utils/populate_teachers.cpp
 )
 
-target_link_libraries(enroll_batch_students database)
-target_link_libraries(populate_all_semesters database)
 target_link_libraries(populate_courses database)
 target_link_libraries(populate_students database)
 target_link_libraries(populate_teachers database)

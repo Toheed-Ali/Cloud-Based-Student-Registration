@@ -11,8 +11,9 @@
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="admin_cli.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
-		<BuildDependency Project="enroll_batch_students.vcxproj"/>
-		<BuildDependency Project="populate_all_semesters.vcxproj"/>
+		<BuildDependency Project="populate_courses.vcxproj"/>
+		<BuildDependency Project="populate_students.vcxproj"/>
+		<BuildDependency Project="populate_teachers.vcxproj"/>
 		<BuildDependency Project="server.vcxproj"/>
 		<BuildDependency Project="student_cli.vcxproj"/>
 		<BuildDependency Project="teacher_cli.vcxproj"/>
@@ -30,11 +31,15 @@
 	<Project Path="database.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="441eaa44-a16b-3744-a1bc-7593ff760476">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="enroll_batch_students.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="98b5512d-16ff-397d-912b-4a26f2c0d4db">
+	<Project Path="populate_courses.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="31a0d2ea-6fc8-3442-b422-302c568facf8">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="populate_all_semesters.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="79583084-b4f6-3450-b4f1-368999d29ff8">
+	<Project Path="populate_students.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="2adeab4d-6033-3438-b8d9-7575917b774d">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+	</Project>
+	<Project Path="populate_teachers.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="98931128-03d7-3253-b471-a4b80203d3bb">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
