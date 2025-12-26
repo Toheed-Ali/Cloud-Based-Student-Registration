@@ -124,6 +124,7 @@ async function addStudent() {
                 studentID,
                 name,
                 email,
+                password,
                 semester: parseInt(semester)
             })
         });
@@ -133,6 +134,12 @@ async function addStudent() {
         if (data.success === 'true') {
             showSuccess('Student added successfully!');
             hideAddStudentForm();
+            // Clear form
+            document.getElementById('new-student-id').value = '';
+            document.getElementById('new-student-name').value = '';
+            document.getElementById('new-student-email').value = '';
+            document.getElementById('new-student-password').value = '';
+            document.getElementById('new-student-semester').value = '1';
             await loadStudents();
             await loadDashboardStats();
         } else {
@@ -253,6 +260,7 @@ async function addTeacher() {
                 teacherID,
                 name,
                 email,
+                password,
                 department
             })
         });
@@ -262,6 +270,12 @@ async function addTeacher() {
         if (data.success === 'true') {
             showSuccess('Teacher added successfully!');
             hideAddTeacherForm();
+            // Clear form
+            document.getElementById('new-teacher-id').value = '';
+            document.getElementById('new-teacher-name').value = '';
+            document.getElementById('new-teacher-email').value = '';
+            document.getElementById('new-teacher-password').value = '';
+            document.getElementById('new-teacher-dept').value = '';
             await loadTeachers();
             await loadDashboardStats();
         } else {
