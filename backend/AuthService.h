@@ -19,13 +19,10 @@ public:
         if (email.empty() || password.empty()) {
             return HTTPServer::jsonError("Email and password required");
         }
-        
-        // Hash the password
-        string passwordHash = SHA256::hash(password);
-        
+                
         // Authenticate
         User user;
-        if (!db.authenticateUser(email, passwordHash, user)) {
+        if (!db.authenticateUser(email, password, user)) {
             return HTTPServer::jsonError("Invalid email or password", 401);
         }
         
