@@ -178,18 +178,16 @@ vector<T> IndexedStorage<T>::getAll() {
     return results;
 }
 
-// template<typename T>
-// void IndexedStorage<T>::save() {
-//     btree.saveToFile(btreeFilename);
-//     hashTable.saveToFile(hashFilename);
-//     // Data file is written incrementally, no need to save again
-// }
+template<typename T>
+void IndexedStorage<T>::save() {
+    // Indexes are rebuilt from .dat file on startup, no need to save them
+    // Data file is written incrementally in writeEntity(), no need to save again
+}
 
-// template<typename T>
-// void IndexedStorage<T>::load() {
-//     btree.loadFromFile(btreeFilename);
-//     hashTable.loadFromFile(hashFilename);
-// }
+template<typename T>
+void IndexedStorage<T>::load() {
+    // Indexes are rebuilt in constructor from .dat file, nothing to do here
+}
 
 template<typename T>
 void IndexedStorage<T>::clear() {
