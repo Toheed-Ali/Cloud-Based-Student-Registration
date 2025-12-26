@@ -105,10 +105,16 @@ async function addStudent() {
     const name = document.getElementById('new-student-name').value;
     const email = document.getElementById('new-student-email').value;
     const semester = document.getElementById('new-student-semester').value;
+    let password = document.getElementById('new-student-password').value;
 
     if (!studentID || !name || !email) {
-        showError('Please fill in all fields');
+        showError('Please fill in all required fields');
         return;
+    }
+
+    // Auto-generate password from last 4 digits if empty
+    if (!password) {
+        password = studentID.slice(-4);
     }
 
     try {
@@ -241,10 +247,16 @@ async function addTeacher() {
     const name = document.getElementById('new-teacher-name').value;
     const email = document.getElementById('new-teacher-email').value;
     const department = document.getElementById('new-teacher-dept').value;
+    let password = document.getElementById('new-teacher-password').value;
 
     if (!teacherID || !name || !email || !department) {
-        showError('Please fill in all fields');
+        showError('Please fill in all required fields');
         return;
+    }
+
+    // Auto-generate password from last 4 digits if empty
+    if (!password) {
+        password = teacherID.slice(-4);
     }
 
     try {
