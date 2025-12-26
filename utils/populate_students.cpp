@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <map>
 #include "../database/DatabaseManager.h"
 #include "../database/DataModels.h"
 #include "../backend/utils/SHA256.h"
