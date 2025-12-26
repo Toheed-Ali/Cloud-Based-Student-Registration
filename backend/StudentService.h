@@ -61,10 +61,22 @@ public:
         int semester = 1;  // Default
         size_t pos = req.path.find("semester=");
         if (pos != string::npos) {
-            semester = stoi(req.path.substr(pos + 9, 1));
+            // Extract semester number - find end of number
+            size_t startPos = pos + 9;  // Length of "semester="
+            size_t endPos = req.path.find_first_not_of("0123456789", startPos);
+            if (endPos == string::npos) endPos = req.path.length();
+            
+            string semesterStr = req.path.substr(startPos, endPos - startPos);
+            cout << "[StudentService] Parsed semester string: '" << semesterStr << "'" << endl;
+            semester = stoi(semesterStr);
         }
         
+        cout << "[StudentService] Querying courses for semester: " << semester << endl;
         vector<Course> courses = db.getCoursesBySemester(semester);
+        cout << "[StudentService] Found " << courses.size() << " courses" << endl;
+        if (!courses.empty()) {
+            cout << "[StudentService] First course: " << courses[0].courseID << " semester=" << courses[0].semester << endl;
+        }
         
         stringstream ss;
         ss << "[";
@@ -125,9 +137,12 @@ public:
                 if (!first) ss << ",";
                 first = false;
                 ss << "{"
-                   << "\"courseID\":\"" << sc.courseID << "\","
-                   << "\"courseName\":\"" << sc.courseName << "\","
-                   << "\"teacherName\":\"" << sc.teacherName << "\","
+                   << "\"courseID\":\"" << sc.courseID << "\","
+
+                   << "\"courseName\":\"" << sc.courseName << "\","
+
+                   << "\"teacherName\":\"" << sc.teacherName << "\","
+
                    << "\"classroom\":" << sc.classroomID << ","
                    << "\"slots\":[";
                 
