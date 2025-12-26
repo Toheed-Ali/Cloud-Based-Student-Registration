@@ -313,12 +313,17 @@ vector<Course> DatabaseManager::getCoursesBySemester(int semester) {
     vector<Course> all = getAllCourses();
     vector<Course> result;
     
+    cout << "[DB] getCoursesBySemester called with semester=" << semester << endl;
+    cout << "[DB] Total courses in database: " << all.size() << endl;
+    
     for (const auto& course : all) {
+        cout << "[DB] Checking course " << course.courseID << " (semester=" << course.semester << ")" << endl;
         if (course.semester == semester) {
             result.push_back(course);
         }
     }
     
+    cout << "[DB] Found " << result.size() << " courses for semester " << semester << endl;
     return result;
 }
 
