@@ -306,7 +306,13 @@ bool DatabaseManager::deleteCourse(const string& courseID) {
 
 vector<Course> DatabaseManager::getAllCourses() {
     lock_guard<mutex> lock(dbMutex);
-    return courses.getAll();
+    vector<Course> result = courses.getAll();
+    cout << "[DB] getAllCourses() returning " << result.size() << " courses" << endl;
+    if (!result.empty()) {
+        cout << "[DB] First course: " << result[0].courseID << " (semester " << result[0].semester << ")" << endl;
+        cout << "[DB] Last course: " << result[result.size()-1].courseID << " (semester " << result[result.size()-1].semester << ")" << endl;
+    }
+    return result;
 }
 
 vector<Course> DatabaseManager::getCoursesBySemester(int semester) {

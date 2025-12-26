@@ -72,25 +72,49 @@ IndexedStorage<T>::IndexedStorage(const string& baseName)
     // Comment out broken index loading
     // load();
     
+    cout << "[IndexedStorage] Loading from: " << dataFilename << endl;
+    
     // REBUILD INDEXES: Read all entities from .dat and rebuild B-Tree/Hash Table
     ifstream dataFile(dataFilename);
     if (dataFile.is_open()) {
         string line;
         size_t lineNum = 0;
+        size_t successCount = 0;
+        size_t failCount = 0;
         
         while (getline(dataFile, line)) {
             if (line.empty()) continue;
             
-            T entity = deserializeEntity(line);
-            string id = getID(entity);
-            
-            // Add to both indexes with line number as offset
-            btree.insert(id, lineNum);
-            hashTable.insert(id, lineNum);
+            try {
+                T entity = deserializeEntity(line);
+                string id = getID(entity);
+                
+                if (id.empty()) {
+                    cout << "[IndexedStorage] WARNING: Empty ID at line " << lineNum << endl;
+                    failCount++;
+                    lineNum++;
+                    continue;
+                }
+                
+                cout << "[IndexedStorage] Loaded entity: " << id << " at line " << lineNum << endl;
+                
+                // Add to both indexes with line number as offset
+                btree.insert(id, lineNum);
+                hashTable.insert(id, lineNum);
+                successCount++;
+                
+            } catch (const exception& e) {
+                cout << "[IndexedStorage] ERROR deserializing line " << lineNum << ": " << e.what() << endl;
+                failCount++;
+            }
             
             lineNum++;
         }
         dataFile.close();
+        
+        cout << "[IndexedStorage] Total entities loaded: " << successCount << " (failed: " << failCount << ")" << endl;
+    } else {
+        cout << "[IndexedStorage] File not found: " << dataFilename << endl;
     }
 }
 

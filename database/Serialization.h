@@ -77,11 +77,20 @@ inline string Serializer::unescape(const string& str) {
 
 inline vector<string> Serializer::split(const string& str, char delimiter) {
     vector<string> tokens;
-    stringstream ss(str);
     string token;
-    while (getline(ss, token, delimiter)) {
-        tokens.push_back(token);
+    
+    for (size_t i = 0; i < str.length(); i++) {
+        if (str[i] == delimiter) {
+            tokens.push_back(token);  // Add even if empty!
+            token.clear();
+        } else {
+            token += str[i];
+        }
     }
+    
+    // Don't forget the last token
+    tokens.push_back(token);
+    
     return tokens;
 }
 

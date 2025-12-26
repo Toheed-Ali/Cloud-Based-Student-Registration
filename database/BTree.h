@@ -482,25 +482,37 @@ void BTree<K, V>::remove(const K& key) {
 
 template<typename K, typename V>
 void BTree<K, V>::getAllPairs(BTreeNode<K, V>* node, vector<pair<K, V>>& pairs) {
-    if (node == nullptr) return;
+    if (node == nullptr) {
+        cout << "[BTree] getAllPairs: node is nullptr" << endl;
+        return;
+    }
+    
+    cout << "[BTree] Visiting node with " << node->numKeys << " keys, isLeaf=" << node->isLeaf << endl;
     
     int i;
     for (i = 0; i < node->numKeys; i++) {
         if (!node->isLeaf) {
+            cout << "[BTree]   Traversing left child " << i << endl;
             getAllPairs(node->children[i], pairs);
         }
+        cout << "[BTree]   Adding key[" << i << "]: " << node->keys[i] << endl;
         pairs.push_back({node->keys[i], node->values[i]});
     }
     
     if (!node->isLeaf) {
+        cout << "[BTree]   Traversing right child " << i << endl;
         getAllPairs(node->children[i], pairs);
     }
+    
+    cout << "[BTree] Node done. Total pairs so far: " << pairs.size() << endl;
 }
 
 template<typename K, typename V>
 vector<pair<K, V>> BTree<K, V>::getAllPairs() {
     vector<pair<K, V>> pairs;
+    cout << "[BTree] getAllPairs() called. Root is " << (root ? "NOT null" : "null") << endl;
     getAllPairs(root, pairs);
+    cout << "[BTree] getAllPairs() returning " << pairs.size() << " total pairs" << endl;
     return pairs;
 }
 
