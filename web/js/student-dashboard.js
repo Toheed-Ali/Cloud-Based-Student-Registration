@@ -56,20 +56,46 @@ async function loadEnrolledCourses() {
     showLoading(true);
 
     try {
-        // Mock data - Replace with: const data = await api.getStudentCourses(currentSemester);
-        const mockCourses = [
-            { courseID: 'CS301', courseName: 'Algorithms', teacherName: 'Dr. Smith', credits: 3 },
-            { courseID: 'CS302', courseName: 'Database Systems', teacherName: 'Dr. Johnson', credits: 3 },
-            { courseID: 'MATH301', courseName: 'Linear Algebra', teacherName: 'Dr. Williams', credits: 3 },
-            { courseID: 'ENG301', courseName: 'Technical Writing', teacherName: 'Prof. Brown', credits: 3 }
-        ];
+        // Get student ID from localStorage (set during login)
+        const studentID = localStorage.getItem('userID') || 'BSCS24119';
 
-        myEnrolledCourses = mockCourses;
+        // Fetch student data to get enrolled courses
+        const response = await fetch(`${API_URL}/student/viewCourses?studentID=${studentID}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch courses');
+        }
+
+        const data = await response.json();
+
+        // Parse the courses data
+        if (data.success === 'true' && data.courses) {
+            const courses = JSON.parse(data.courses);
+            // For now, show all courses as enrolled (until we have a proper enrolled list endpoint)
+            myEnrolledCourses = courses.map(c => ({
+                courseID: c.courseID,
+                courseName: c.courseName,
+                teacherName: c.teacherID,
+                credits: 3
+            }));
+        }
+
         renderEnrolledCourses();
         updateDashboardStats();
 
     } catch (error) {
+        console.error('Error:', error);
         showError('Failed to load enrolled courses: ' + error.message);
+        // Fallback to mock data on error
+        myEnrolledCourses = [
+            { courseID: 'CS301', courseName: 'Algorithms', teacherName: 'Dr. Smith', credits: 3 },
+            { courseID: 'CS302', courseName: 'Database Systems', teacherName: 'Dr. Johnson', credits: 3 }
+        ];
+        renderEnrolledCourses();
     } finally {
         showLoading(false);
     }
@@ -102,18 +128,40 @@ async function loadAvailableCourses() {
     showLoading(true);
 
     try {
-        // Mock data
-        const mockCourses = [
-            { courseID: 'CS303', courseName: 'Computer Organization', teacherName: 'Dr. Davis', currentEnrollmentCount: 40, maxCapacity: 50 },
-            { courseID: 'CS304', courseName: 'Software Engineering', teacherName: 'Prof. Miller', currentEnrollmentCount: 35, maxCapacity: 50 },
-            { courseID: 'MATH302', courseName: 'Probability', teacherName: 'Dr. Wilson', currentEnrollmentCount: 45, maxCapacity: 50 }
-        ];
+        // Fetch courses for current semester
+        const response = await fetch(`${API_URL}/student/viewCourses?semester=${currentSemester}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
 
-        availableCourses = mockCourses;
+        if (!response.ok) {
+            throw new Error('Failed to fetch available courses');
+        }
+
+        const data = await response.json();
+
+        if (data.success === 'true' && data.courses) {
+            const courses = JSON.parse(data.courses);
+            availableCourses = courses.map(c => ({
+                courseID: c.courseID,
+                courseName: c.courseName,
+                teacherName: c.teacherID,
+                currentEnrollmentCount: c.enrollmentCount || 0,
+                maxCapacity: 50
+            }));
+        }
+
         renderAvailableCourses();
 
     } catch (error) {
+        console.error('Error:', error);
         showError('Failed to load available courses: ' + error.message);
+        // Fallback to mock data
+        availableCourses = [
+            { courseID: 'CS303', courseName: 'Computer Organization', teacherName: 'Dr. Davis', currentEnrollmentCount: 40, maxCapacity: 50 }
+        ];
+        renderAvailableCourses();
     } finally {
         showLoading(false);
     }
@@ -207,68 +255,97 @@ async function dropCourse(courseId) {
 
 async function loadTimetable() {
     const timetableDiv = document.getElementById('timetable-content');
+    timetableDiv.innerHTML = '<div class="spinner"></div>';
 
-    // Mock timetable
-    const mockTimetable = `
+    try {
+        const studentID = localStorage.getItem('userID') || 'BSCS24119';
+
+        const response = await fetch(`${API_URL}/student/viewTimetable?studentID=${studentID}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch timetable');
+        }
+
+        const data = await response.json();
+
+        if (data.success === 'true' && data.timetable) {
+            const timetableData = JSON.parse(data.timetable);
+            renderTimetable(timetableData);
+        } else {
+            throw new Error('No timetable data available');
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        timetableDiv.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">📅</div>
+                <div class="empty-state-text">Timetable not available</div>
+                <p class="text-secondary">The timetable hasn't been generated yet or you don't have any enrolled courses.</p>
+            </div>
+        `;
+    }
+}
+
+function renderTimetable(timetableData) {
+    const timetableDiv = document.getElementById('timetable-content');
+
+    // Create a 2D grid for the timetable
+    const schedule = Array(5).fill(null).map(() => Array(5).fill(null).map(() => []));
+
+    // Fill the schedule grid
+    timetableData.forEach(course => {
+        course.slots.forEach(slot => {
+            const dayIndex = parseInt(slot.day);
+            const hourIndex = Math.floor((parseInt(slot.hour) - 9) / 1.5);
+            if (dayIndex >= 0 && dayIndex < 5 && hourIndex >= 0 && hourIndex < 5) {
+                schedule[hourIndex][dayIndex].push({
+                    courseID: course.courseID,
+                    courseName: course.courseName,
+                    classroom: course.classroom
+                });
+            }
+        });
+    });
+
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    const times = ['9:00-10:30', '10:30-12:00', '13:00-14:30', '14:30-16:00', '16:00-17:30'];
+
+    let html = `
         <div style="overflow-x: auto;">
             <table>
                 <thead>
                     <tr>
                         <th style="min-width: 100px;">Time</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
+                        ${days.map(day => `<th>${day}</th>`).join('')}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>9:00-10:30</strong></td>
-                        <td><div class="badge badge-primary">CS301<br>Room 101</div></td>
-                        <td></td>
-                        <td><div class="badge badge-success">MATH301<br>Room 203</div></td>
-                        <td></td>
-                        <td><div class="badge badge-primary">CS302<br>Room 105</div></td>
-                    </tr>
-                    <tr>
-                        <td><strong>10:30-12:00</strong></td>
-                        <td></td>
-                        <td><div class="badge badge-warning">ENG301<br>Room 301</div></td>
-                        <td></td>
-                        <td><div class="badge badge-primary">CS301<br>Room 101</div></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><strong>13:00-14:30</strong></td>
-                        <td><div class="badge badge-success">MATH301<br>Room 203</div></td>
-                        <td></td>
-                        <td><div class="badge badge-primary">CS302<br>Room 105</div></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><strong>14:30-16:00</strong></td>
-                        <td></td>
-                        <td><div class="badge badge-primary">CS302<br>Room 105</div></td>
-                        <td></td>
-                        <td><div class="badge badge-warning">ENG301<br>Room 301</div></td>
-                        <td><div class="badge badge-success">MATH301<br>Room 203</div></td>
-                    </tr>
-                    <tr>
-                        <td><strong>16:00-17:30</strong></td>
-                        <td><div class="badge badge-primary">CS301<br>Room 101</div></td>
-                        <td></td>
-                        <td><div class="badge badge-warning">ENG301<br>Room 301</div></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     `;
 
-    timetableDiv.innerHTML = mockTimetable;
+    for (let hour = 0; hour < 5; hour++) {
+        html += `<tr><td><strong>${times[hour]}</strong></td>`;
+        for (let day = 0; day < 5; day++) {
+            const classes = schedule[hour][day];
+            if (classes.length > 0) {
+                html += '<td>';
+                classes.forEach(cls => {
+                    html += `<div class="badge badge-primary mb-xs">${cls.courseID}<br>Room ${cls.classroom || 'TBA'}</div>`;
+                });
+                html += '</td>';
+            } else {
+                html += '<td></td>';
+            }
+        }
+        html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    timetableDiv.innerHTML = html;
 }
 
 function loadProfile() {
