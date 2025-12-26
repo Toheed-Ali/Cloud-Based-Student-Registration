@@ -345,22 +345,13 @@ async function loadCourses() {
 
         const results = await Promise.all(promises);
 
-        // Use a Map to prevent duplicates (key by courseID)
-        const coursesMap = new Map();
-
+        // Concatenate all courses from all semesters
+        allCourses = [];
         results.forEach(data => {
             if (data.success === 'true' && data.courses) {
-                data.courses.forEach(course => {
-                    // Only add if not already in map, or update if this one is newer
-                    if (!coursesMap.has(course.courseID)) {
-                        coursesMap.set(course.courseID, course);
-                    }
-                });
+                allCourses = allCourses.concat(data.courses);
             }
         });
-
-        // Convert map back to array
-        allCourses = Array.from(coursesMap.values());
 
         // Sort by semester then courseID
         allCourses.sort((a, b) => {
