@@ -64,12 +64,34 @@ public:
 // ==================== Implementation ====================
 
 template<typename T>
-IndexedStorage<T>::IndexedStorage(const string& baseName) 
+IndexedStorage<T>::IndexedStorage(const string& baseName)
     : dataFilename(baseName + ".dat"),
       btreeFilename(baseName + ".btree"),
       hashFilename(baseName + ".hash") {
     
-    load();  // Load existing data if present
+    // Comment out broken index loading
+    // load();
+    
+    // REBUILD INDEXES: Read all entities from .dat and rebuild B-Tree/Hash Table
+    ifstream dataFile(dataFilename);
+    if (dataFile.is_open()) {
+        string line;
+        size_t lineNum = 0;
+        
+        while (getline(dataFile, line)) {
+            if (line.empty()) continue;
+            
+            T entity = deserializeEntity(line);
+            string id = getID(entity);
+            
+            // Add to both indexes with line number as offset
+            btree.insert(id, lineNum);
+            hashTable.insert(id, lineNum);
+            
+            lineNum++;
+        }
+        dataFile.close();
+    }
 }
 
 template<typename T>
@@ -156,18 +178,18 @@ vector<T> IndexedStorage<T>::getAll() {
     return results;
 }
 
-template<typename T>
-void IndexedStorage<T>::save() {
-    btree.saveToFile(btreeFilename);
-    hashTable.saveToFile(hashFilename);
-    // Data file is written incrementally, no need to save again
-}
+// template<typename T>
+// void IndexedStorage<T>::save() {
+//     btree.saveToFile(btreeFilename);
+//     hashTable.saveToFile(hashFilename);
+//     // Data file is written incrementally, no need to save again
+// }
 
-template<typename T>
-void IndexedStorage<T>::load() {
-    btree.loadFromFile(btreeFilename);
-    hashTable.loadFromFile(hashFilename);
-}
+// template<typename T>
+// void IndexedStorage<T>::load() {
+//     btree.loadFromFile(btreeFilename);
+//     hashTable.loadFromFile(hashFilename);
+// }
 
 template<typename T>
 void IndexedStorage<T>::clear() {
