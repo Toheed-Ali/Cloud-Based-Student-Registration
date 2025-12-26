@@ -132,7 +132,16 @@ public:
         bool first = true;
         for (const auto& pair : data) {
             if (!first) json += ",";
-            json += "\"" + pair.first + "\":\"" + pair.second + "\"";
+            json += "\"" + pair.first + "\":";
+            
+            // Check if value is already JSON (array or object)
+            if (!pair.second.empty() && (pair.second[0] == '[' || pair.second[0] == '{')) {
+                // Raw JSON value - don't quote it
+                json += pair.second;
+            } else {
+                // String value - quote it
+                json += "\"" + pair.second + "\"";
+            }
             first = false;
         }
         json += "}";
