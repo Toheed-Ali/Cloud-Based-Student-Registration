@@ -4,100 +4,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Student Portal - University Management System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">🎓 Student Portal</div>
-            <div class="nav-menu">
-                <span id="user-name"></span>
-                <button class="btn btn-secondary" onclick="api.logout()">Logout</button>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="header-logo">
+                    <span class="header-logo-icon">🎓</span>
+                    <span>Student Portal</span>
+                </div>
             </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="theme-toggle" onclick="themeManager.toggle()"
+                    aria-label="Toggle theme">
+                    🌙
+                </button>
+                <div class="header-user">
+                    <div class="header-user-avatar" id="user-avatar">S</div>
+                    <div class="header-user-name" id="user-name">Loading...</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="api.logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="app-body">
+            <!-- Sidebar Navigation -->
+            <aside class="app-sidebar">
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" data-nav="dashboard">
+                        <span class="nav-item-icon">📊</span>
+                        <span class="nav-item-text">Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-nav="courses">
+                        <span class="nav-item-icon">📚</span>
+                        <span class="nav-item-text">My Courses</span>
+                    </div>
+                    <div class="nav-item" data-nav="enroll">
+                        <span class="nav-item-icon">➕</span>
+                        <span class="nav-item-text">Enroll in Courses</span>
+                    </div>
+                    <div class="nav-item" data-nav="timetable">
+                        <span class="nav-item-icon">📅</span>
+                        <span class="nav-item-text">Timetable</span>
+                    </div>
+                    <div class="nav-item" data-nav="profile">
+                        <span class="nav-item-icon">👤</span>
+                        <span class="nav-item-text">Profile</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="app-main">
+                <div class="main-content">
+                    <!-- Alerts -->
+                    <div id="success-message" class="alert alert-success hidden"></div>
+                    <div id="error-message" class="alert alert-error hidden"></div>
+
+                    <!-- Dashboard Section -->
+                    <section data-section="dashboard" class="visible">
+                        <h2 class="mb-lg">Dashboard</h2>
+
+                        <div class="grid grid-cols-3 mb-xl">
+                            <div class="stat-card">
+                                <div class="stat-card-label">Current Semester</div>
+                                <div class="stat-card-value" id="current-semester">3</div>
+                            </div>
+                            <div class="stat-card success">
+                                <div class="stat-card-label">Enrolled Courses</div>
+                                <div class="stat-card-value" id="enrolled-count">0</div>
+                            </div>
+                            <div class="stat-card warning">
+                                <div class="stat-card-label">Total Credits</div>
+                                <div class="stat-card-value" id="total-credits">15</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Quick Actions</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="grid grid-cols-2">
+                                    <button class="btn btn-primary" onclick="navManager.navigateTo('enroll')">
+                                        ➕ Enroll in Courses
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="navManager.navigateTo('timetable')">
+                                        📅 View Timetable
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- My Courses Section -->
+                    <section data-section="courses" class="hidden">
+                        <h2 class="mb-lg">My Enrolled Courses</h2>
+
+                        <div id="loading-spinner" class="spinner hidden"></div>
+
+                        <div class="card">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Course ID</th>
+                                            <th>Course Name</th>
+                                            <th>Teacher</th>
+                                            <th>Credits</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="enrolled-courses-list">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Loading courses...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Enroll Section -->
+                    <section data-section="enroll" class="hidden">
+                        <h2 class="mb-lg">Available Courses</h2>
+
+                        <div class="card">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Course ID</th>
+                                            <th>Course Name</th>
+                                            <th>Teacher</th>
+                                            <th>Enrollment</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="available-courses-list">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Loading courses...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Timetable Section -->
+                    <section data-section="timetable" class="hidden">
+                        <h2 class="mb-lg">My Timetable</h2>
+
+                        <div class="card">
+                            <div id="timetable-content">
+                                <p class="text-center text-secondary">Loading timetable...</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Profile Section -->
+                    <section data-section="profile" class="hidden">
+                        <h2 class="mb-lg">My Profile</h2>
+
+                        <div class="grid grid-cols-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Personal Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Student ID</label>
+                                        <input type="text" class="form-control" id="profile-id" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="profile-name" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="profile-email" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Department</label>
+                                        <input type="text" class="form-control" value="Computer Science" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Academic Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Current Semester</label>
+                                        <input type="text" class="form-control" id="profile-semester" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Enrolled Courses</label>
+                                        <input type="text" class="form-control" id="profile-courses" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Total Credits</label>
+                                        <input type="text" class="form-control" value="15" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
         </div>
     </div>
 
-    <div class="container">
-        <div id="success-message" class="alert alert-success hidden"></div>
-        <div id="error-message" class="alert alert-error hidden"></div>
-
-        <!-- Stats Dashboard -->
-        <div class="dashboard-grid">
-            <div class="stat-card">
-                <h3>Current Semester</h3>
-                <div class="value" id="current-semester">3</div>
-            </div>
-            <div class="stat-card">
-                <h3>Enrolled Courses</h3>
-                <div class="value" id="enrolled-count">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Available Courses</h3>
-                <div class="value" id="available-count">0</div>
-            </div>
-        </div>
-
-        <!-- Available Courses -->
-        <div class="card">
-            <div class="card-header">📚 Available Courses</div>
-            <div id="loading-spinner" class="spinner hidden"></div>
-            <div class="table-container">
-                <table id="courses-table">
-                    <thead>
-                        <tr>
-                            <th>Course ID</th>
-                            <th>Course Name</th>
-                            <th>Teacher</th>
-                            <th>Enrollment</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="courses-list">
-                        <tr>
-                            <td colspan="5" class="text-center">Loading courses...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- My Enrolled Courses -->
-        <div class="card">
-            <div class="card-header">✅ My Enrolled Courses</div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Course ID</th>
-                            <th>Course Name</th>
-                            <th>Teacher</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="enrolled-list">
-                        <tr>
-                            <td colspan="4" class="text-center">No enrolled courses</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Timetable -->
-        <div class="card">
-            <div class="card-header">📅 My Timetable</div>
-            <div id="timetable-content">
-                <p class="text-center" style="color: var(--text-light);">Your timetable will appear here after courses
-                    are scheduled.</p>
-            </div>
-        </div>
-    </div>
-
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/navigation.js"></script>
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/student.js"></script>
+    <script src="js/student-dashboard.js"></script>
 </body>
 
 </html>
