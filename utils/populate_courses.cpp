@@ -69,10 +69,10 @@ int main() {
         course.courseName = get<1>(courseData);
         course.semester = get<2>(courseData);
         course.teacherID = get<3>(courseData);
-        course.capacity = get<4>(courseData);
-        course.enrolledCount = 0;
+        course.currentEnrollmentCount = 0;
+        // Note: Course struct uses enrolledStudents vector, not a capacity field
         
-        if (db.createCourse(course)) {
+        if (db.addCourse(course)) {
             cout << "✓ Added: " << course.courseID << " - " << course.courseName << endl;
             added++;
         } else {
