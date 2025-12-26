@@ -72,11 +72,10 @@ async function loadEnrolledCourses() {
 
         const data = await response.json();
 
-        // Parse the courses data
+        // Use the courses data directly (already parsed by fetch)
         if (data.success === 'true' && data.courses) {
-            const courses = JSON.parse(data.courses);
             // For now, show all courses as enrolled (until we have a proper enrolled list endpoint)
-            myEnrolledCourses = courses.map(c => ({
+            myEnrolledCourses = data.courses.map(c => ({
                 courseID: c.courseID,
                 courseName: c.courseName,
                 teacherName: c.teacherID,
@@ -142,8 +141,7 @@ async function loadAvailableCourses() {
         const data = await response.json();
 
         if (data.success === 'true' && data.courses) {
-            const courses = JSON.parse(data.courses);
-            availableCourses = courses.map(c => ({
+            availableCourses = data.courses.map(c => ({
                 courseID: c.courseID,
                 courseName: c.courseName,
                 teacherName: c.teacherID,
@@ -273,8 +271,7 @@ async function loadTimetable() {
         const data = await response.json();
 
         if (data.success === 'true' && data.timetable) {
-            const timetableData = JSON.parse(data.timetable);
-            renderTimetable(timetableData);
+            renderTimetable(data.timetable);
         } else {
             throw new Error('No timetable data available');
         }
