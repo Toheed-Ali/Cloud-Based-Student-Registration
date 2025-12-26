@@ -184,6 +184,33 @@ bool DatabaseManager::updateStudent(const Student& student) {
 
 bool DatabaseManager::deleteStudent(const string& studentID) {
     lock_guard<mutex> lock(dbMutex);
+    
+    // First get the student to access their data
+    Student student;
+    if (!getStudentInternal(studentID, student)) {
+        return false;  // Student not found
+    }
+    
+    // Remove student from all enrolled courses and update counts
+    for (const auto& courseID : student.enrolledCourses) {
+        Course course;
+        if (getCourseInternal(courseID, course)) {
+            // Remove student from course's enrolledStudents list
+            auto it = find(course.enrolledStudents.begin(), course.enrolledStudents.end(), studentID);
+            if (it != course.enrolledStudents.end()) {
+                course.enrolledStudents.erase(it);
+                course.currentEnrollmentCount--;
+                updateCourseInternal(course);
+            }
+        }
+    }
+    
+    // Delete the user account associated with this student
+    if (!student.email.empty()) {
+        users.remove(student.email);
+    }
+    
+    // Finally delete the student record
     return students.remove(studentID);
 }
 
@@ -224,6 +251,19 @@ bool DatabaseManager::updateTeacher(const Teacher& teacher) {
 
 bool DatabaseManager::deleteTeacher(const string& teacherID) {
     lock_guard<mutex> lock(dbMutex);
+    
+    // First get the teacher to access their data
+    Teacher teacher;
+    if (!teachers.get(teacherID, teacher)) {
+        return false;  // Teacher not found
+    }
+    
+    // Delete the user account associated with this teacher
+    if (!teacher.email.empty()) {
+        users.remove(teacher.email);
+    }
+    
+    // Delete the teacher record
     return teachers.remove(teacherID);
 }
 
