@@ -32,8 +32,10 @@ int main() {
     server.post("/api/admin/removeTeacher", AdminService::removeTeacher);
     server.post("/api/admin/addCourse", AdminService::addCourse);
     server.post("/api/admin/setRegistrationWindow", AdminService::setRegistrationWindow);
+    server.get("/api/admin/getRegistrationWindow", AdminService::getRegistrationWindow);
     server.get("/api/admin/viewAllStudents", AdminService::viewAllStudents);
     server.get("/api/admin/viewAllTeachers", AdminService::viewAllTeachers);
+    server.get("/api/admin/viewTimetable", AdminService::viewTimetable);
     server.post("/api/admin/generateTimetable", TimetableGenerator::generateTimetableAPI);
     
     // ========== Student Routes ==========
@@ -41,22 +43,19 @@ int main() {
     server.post("/api/student/dropCourse", StudentService::dropCourse);
     server.get("/api/student/viewCourses", StudentService::viewCourses);
     server.get("/api/student/viewTimetable", StudentService::viewTimetable);
-    
+    server.get("/api/student/mydata", StudentService::getMyData);
     // ========== Teacher Routes ==========
     server.get("/api/teacher/viewStudents", TeacherService::viewStudents);
     server.get("/api/teacher/viewTimetable", TeacherService::viewTimetable);
     
     cout << "\n[Server] All routes registered successfully!" << endl;
-    cout << "[Server] Total endpoints: 17" << endl;
+    cout << "[Server] Total endpoints: 18" << endl;
     cout << "\n========================================" << endl;
     cout << "  Server Configuration" << endl;
     cout << "========================================" << endl;
     cout << "Port: 8080" << endl;
     cout << "Database: Custom B-Tree + Hash Table" << endl;
     cout << "Data Directory: ./data/" << endl;
-    cout << "\nDefault Admin Credentials:" << endl;
-    cout << "  Email: admin@university.com" << endl;
-    cout << "  Password: admin123" << endl;
     cout << "========================================" << endl;
     
     // In production, this would call server.start() which uses cpp-httplib

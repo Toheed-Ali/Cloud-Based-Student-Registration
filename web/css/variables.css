@@ -1,19 +1,31 @@
 /* ===== CSS Custom Properties (Design Tokens) ===== */
 :root {
-    /* Light Mode Colors */
-    --primary: #1a73e8;
-    --primary-hover: #1557b0;
-    --primary-light: #e8f0fe;
-    --secondary: #5f6368;
-    --background: #ffffff;
-    --surface: #f8f9fa;
+    /* Light Mode Colors - Professional Theme */
+    --primary: #4f46e5;
+    /* Indigo 600 */
+    --primary-hover: #4338ca;
+    /* Indigo 700 */
+    --primary-light: #eef2ff;
+    /* Indigo 50 */
+    --secondary: #64748b;
+    /* Slate 500 */
+    --background: #f8fafc;
+    /* Slate 50 */
+    --surface: #f1f5f9;
+    /* Slate 100 */
     --surface-elevated: #ffffff;
-    --success: #1e7e34;
-    --success-light: #d4edda;
-    --warning: #f9ab00;
-    --warning-light: #fff3cd;
-    --danger: #d93025;
-    --danger-light: #f8d7da;
+    --success: #059669;
+    /* Emerald 600 */
+    --success-light: #ecfdf5;
+    /* Emerald 50 */
+    --warning: #d97706;
+    /* Amber 600 */
+    --warning-light: #fffbeb;
+    /* Amber 50 */
+    --danger: #dc2626;
+    /* Red 600 */
+    --danger-light: #fef2f2;
+    /* Red 50 */
     --text-primary: #202124;
     --text-secondary: #5f6368;
     --text-disabled: #9aa0a6;
@@ -70,6 +82,20 @@
     --z-modal: 1050;
     --z-popover: 1060;
     --z-tooltip: 1070;
+
+    /* Timetable Specific - Light Mode Default */
+    --timetable-header-bg: #f5f5f5;
+    --timetable-border: #dddddd;
+    --timetable-cell-bg: #ffffff;
+    --timetable-empty-text: #cccccc;
+    --timetable-lunch-bg: #fff9e6;
+    --timetable-lunch-text: #888888;
+    --timetable-card-bg-start: #e3f2fd;
+    --timetable-card-bg-end: #bbdefb;
+    --timetable-card-border: #2196f3;
+    --timetable-card-title: #1565c0;
+    --timetable-card-text: #424242;
+    --timetable-card-subtext: #616161;
 }
 
 /* Dark Mode */
@@ -94,7 +120,24 @@
     --border-light: #5f6368;
     --shadow: rgba(0, 0, 0, 0.6);
     --shadow-light: rgba(0, 0, 0, 0.3);
+
+    /* Timetable Specific - Dark Mode */
+    --timetable-header-bg: #292a2d;
+    --timetable-border: #3c4043;
+    --timetable-cell-bg: #202124;
+    --timetable-empty-text: #5f6368;
+    --timetable-lunch-bg: #3d3416;
+    --timetable-lunch-text: #fdd663;
+    --timetable-card-bg-start: #1f3c5a;
+    --timetable-card-bg-end: #1a2e42;
+    --timetable-card-border: #8ab4f8;
+    --timetable-card-title: #8ab4f8;
+    --timetable-card-text: #e8eaed;
+    --timetable-card-subtext: #9aa0a6;
 }
+
+
+
 
 /* ===== Base Styles ===== */
 * {

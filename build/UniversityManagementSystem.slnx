@@ -7,7 +7,7 @@
 		<BuildType Name="RelWithDebInfo"/>
 		<Platform Name="x64"/>
 	</Configurations>
-	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="301a8adf-ca40-3231-9cf5-68cd82e54e1b" DefaultStartup="true">
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b1cde1b2-5738-3404-9e50-345e8685d0e3" DefaultStartup="true">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="admin_cli.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
@@ -23,39 +23,39 @@
 		<Build Solution="MinSizeRel|*" Project="false"/>
 		<Build Solution="RelWithDebInfo|*" Project="false"/>
 	</Project>
-	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="d7767801-bbfd-364d-b0dc-28a15ca9ccc3"/>
-	<Project Path="admin_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="050f5c89-95d0-3945-9576-36ad0b90a180">
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="df2de887-4227-3c40-b3e9-ee65d3bb59d9"/>
+	<Project Path="admin_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="e2187f80-9ba2-3ce4-a792-05cf96464509">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="database.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="441eaa44-a16b-3744-a1bc-7593ff760476">
+	<Project Path="database.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7b7a885f-9e32-3192-ae35-6d5dfced0345">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 	</Project>
-	<Project Path="populate_courses.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="31a0d2ea-6fc8-3442-b422-302c568facf8">
-		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
-		<BuildDependency Project="database.vcxproj"/>
-	</Project>
-	<Project Path="populate_students.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="2adeab4d-6033-3438-b8d9-7575917b774d">
+	<Project Path="populate_courses.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="87709f24-ea89-30a9-b2ca-9885dbe28c73">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="populate_teachers.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="98931128-03d7-3253-b471-a4b80203d3bb">
+	<Project Path="populate_students.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="23197f79-957b-39bb-a90c-3407cb3bf727">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="server.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c41830a0-d2ed-3ce8-86e0-ae5674f85447">
+	<Project Path="populate_teachers.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a131d373-019a-3e28-8980-0c06b4aba4b8">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="student_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="faf85ff1-6c29-3903-9269-336396d7cb39">
+	<Project Path="server.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="ebd41a7f-4e4a-3cb6-be07-1adfc983a3bb">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="teacher_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="d2a69451-2052-3f5c-aec3-3ff902835b3a">
+	<Project Path="student_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="da933fed-91f2-3828-aedd-f2f21dbfb44d">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>
-	<Project Path="test_indexed_storage.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0d945663-c970-3b41-bd3c-54a438c2d51e">
+	<Project Path="teacher_cli.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="c0775e26-04a1-3cdc-b0c4-6d553f547523">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="database.vcxproj"/>
+	</Project>
+	<Project Path="test_indexed_storage.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7e805227-aca6-3440-8e49-abf29c4cb994">
 		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
 		<BuildDependency Project="database.vcxproj"/>
 	</Project>

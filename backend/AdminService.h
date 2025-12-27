@@ -149,11 +149,30 @@ public:
         config.registrationEndTime = JSONParser::getInt(data, "endTime", 0);
         config.isRegistrationOpen = JSONParser::getBool(data, "isOpen", true);
         
+        // Auto-clear timetables when registration opens to prevent stale data
+        if (config.isRegistrationOpen) {
+            cout << "[AdminService] Registration Opened. Clearing old timetables." << endl;
+            db.clearTimetables();
+        }
+
         db.updateConfig(config);
         
         map<string, string> response;
         response["success"] = "true";
         response["message"] = "Registration window updated";
+        
+        return HTTPServer::jsonSuccess(response);
+    }
+    
+    // GET /api/admin/getRegistrationWindow
+    static HTTPResponse getRegistrationWindow(const HTTPRequest& req, DatabaseManager& db) {
+        SystemConfig config = db.getConfig();
+        
+        map<string, string> response;
+        response["success"] = "true";
+        response["startTime"] = to_string(config.registrationStartTime);
+        response["endTime"] = to_string(config.registrationEndTime);
+        response["isOpen"] = config.isRegistrationOpen ? "true" : "false";
         
         return HTTPServer::jsonSuccess(response);
     }
@@ -231,6 +250,111 @@ public:
         response["success"] = "true";
         response["message"] = "Course added successfully";
         response["courseID"] = course.courseID;
+        
+        return HTTPServer::jsonSuccess(response);
+    }
+    
+    // GET /api/admin/viewTimetable?semester=X
+    static HTTPResponse viewTimetable(const HTTPRequest& req, DatabaseManager& db) {
+        // Extract semester from req.params
+        string semesterStr;
+        
+        if (req.params.count("semester") > 0) {
+            semesterStr = req.params.at("semester");
+        }
+        
+        cout << "[AdminService] viewTimetable called" << endl;
+        cout << "[AdminService] Semester param: '" << semesterStr << "'" << endl;
+        cout << "[AdminService] All params:" << endl;
+        for (const auto& p : req.params) {
+            cout << "  " << p.first << " = " << p.second << endl;
+        }
+        
+        if (semesterStr.empty()) {
+            cout << "[AdminService] ERROR: semester parameter is empty" << endl;
+            return HTTPServer::jsonError("Semester parameter required", 400);
+        }
+        
+        int semester = 0;
+        try {
+            semester = stoi(semesterStr);
+        } catch (const exception& e) {
+            cout << "[AdminService] ERROR: Failed to parse semester: " << e.what() << endl;
+            return HTTPServer::jsonError("Invalid semester parameter", 400);
+        }
+        
+        cout << "[AdminService] Parsed semester: " << semester << endl;
+        
+        // Get timetable for this semester
+        Timetable timetable;
+        bool found = db.getTimetable(semester, timetable);
+        
+        cout << "[AdminService] getTimetable returned: " << (found ? "true" : "false") << endl;
+        
+        if (!found) {
+            cout << "[AdminService] No timetable found for semester " << semester << endl;
+            return HTTPServer::jsonError("Timetable not found for semester " + semesterStr, 404);
+        }
+        
+        cout << "[AdminService] Found timetable with " << timetable.schedule.size() << " courses" << endl;
+        
+        // Return ALL courses for admin (no filtering)
+        stringstream ss;
+        ss << "[";
+        
+        for (size_t i = 0; i < timetable.schedule.size(); i++) {
+            if (i > 0) ss << ",";
+            
+            const auto& sc = timetable.schedule[i];
+            
+            // CRITICAL FIX: Get real-time enrollment count from Course object
+            // The sc.studentIDs might be stale if students enrolled after timetable generation
+            Course course;
+            int currentCount = 0;
+            if (db.getCourse(sc.courseID, course)) {
+                currentCount = course.enrolledStudents.size();
+            } else {
+                currentCount = sc.studentIDs.size(); // Fallback
+            }
+            
+            cout << "[AdminService] Serializing course " << (i+1) << "/" << timetable.schedule.size() 
+                 << ": " << sc.courseID << " with " << sc.slots.size() << " slots. Enrolled: " << currentCount << endl;
+            
+            ss << "{"
+               << "\"courseID\":\"" << sc.courseID << "\","
+               << "\"courseName\":\"" << sc.courseName << "\","
+               << "\"teacherName\":\"" << sc.teacherName << "\","
+               << "\"classroom\":" << sc.classroomID << ","
+               << "\"studentCount\":" << currentCount << ","
+               << "\"slots\":[";
+            
+            // Serialize all slots
+            for (size_t j = 0; j < sc.slots.size(); j++) {
+                if (j > 0) ss << ",";
+                const auto& slot = sc.slots[j];
+                ss << "{"
+                   << "\"day\":" << slot.day << ","
+                   << "\"hour\":" << slot.hour << ","
+                   << "\"dayName\":\"" << slot.getDayName() << "\","
+                   << "\"time\":\"" << slot.getTimeString() << "\""
+                   << "}";
+            }
+            
+            ss << "]}";
+        }
+        
+        ss << "]";
+        
+        string timetableJson = ss.str();
+        cout << "[AdminService] Generated JSON length: " << timetableJson.length() << " bytes" << endl;
+        cout << "[AdminService] JSON preview: " << timetableJson.substr(0, 200) << "..." << endl;
+        
+        map<string, string> response;
+        response["success"] = "true";
+        response["semester"] = semesterStr;
+        response["timetable"] = timetableJson;
+        
+        cout << "[AdminService] Returning success response" << endl;
         
         return HTTPServer::jsonSuccess(response);
     }

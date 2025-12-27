@@ -473,6 +473,11 @@ bool DatabaseManager::dropCourse(const string& studentID, const string& courseID
 
 bool DatabaseManager::saveTimetable(const Timetable& timetable) {
     lock_guard<mutex> lock(dbMutex);
+    string id = to_string(timetable.semesterNumber);
+    if (timetables.exists(id)) {
+        cout << "[DatabaseManager] Updating existing timetable for semester " << id << endl;
+        return timetables.update(timetable);
+    }
     return timetables.add(timetable);
 }
 
@@ -484,6 +489,11 @@ bool DatabaseManager::getTimetable(int semester, Timetable& outTimetable) {
 vector<Timetable> DatabaseManager::getAllTimetables() {
     lock_guard<mutex> lock(dbMutex);
     return timetables.getAll();
+}
+
+void DatabaseManager::clearTimetables() {
+    lock_guard<mutex> lock(dbMutex);
+    timetables.clear();
 }
 
 // ========== System Config Operations ==========

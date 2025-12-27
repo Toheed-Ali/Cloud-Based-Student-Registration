@@ -15,9 +15,58 @@
 #include "utils/JSONParser.h"
 #include <functional>
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 using namespace httplib;
+
+// Helper function to URL decode a string
+inline string urlDecode(const string& str) {
+    string result;
+    for (size_t i = 0; i < str.length(); i++) {
+        if (str[i] == '+') {
+            result += ' ';
+        } else if (str[i] == '%' && i + 2 < str.length()) {
+            int value;
+            stringstream ss;
+            ss << hex << str.substr(i + 1, 2);
+            ss >> value;
+            result += static_cast<char>(value);
+            i += 2;
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
+}
+
+// Helper function to parse query string
+inline map<string, string> parseQueryString(const string& query) {
+    map<string, string> params;
+    
+    if (query.empty()) return params;
+    
+    stringstream ss(query);
+    string pair;
+    
+    while (getline(ss, pair, '&')) {
+        size_t pos = pair.find('=');
+        if (pos != string::npos) {
+            string key = urlDecode(pair.substr(0, pos));
+            string value = urlDecode(pair.substr(pos + 1));
+            params[key] = value;
+        } else {
+            // Handle parameters without values
+            string key = urlDecode(pair);
+            if (!key.empty()) {
+                params[key] = "";
+            }
+        }
+    }
+    
+    return params;
+}
 
 // HTTP Request/Response structures for compatibility
 struct HTTPRequest {
@@ -25,14 +74,63 @@ struct HTTPRequest {
     string path;
     string body;
     map<string, string> headers;
+    map<string, string> params;  // Query parameters
     
     HTTPRequest(const Request& req) {
         method = req.method;
         path = req.path;
         body = req.body;
+        
+        // Copy headers
         for (const auto& header : req.headers) {
             headers[header.first] = header.second;
         }
+        
+        // DEBUGGING: Print all available request info
+        cout << "[HTTPRequest] ===================" << endl;
+        cout << "[HTTPRequest] Method: " << method << endl;
+        cout << "[HTTPRequest] Path: " << path << endl;
+        
+        // Check if path contains query string (it shouldn't, but let's verify)
+        if (path.find('?') != string::npos) {
+            cout << "[HTTPRequest] WARNING: Path contains '?' character!" << endl;
+        }
+        
+        // Try to access target
+        string target = "";
+        try {
+            target = req.target;
+            cout << "[HTTPRequest] Target: " << target << endl;
+        } catch (...) {
+            cout << "[HTTPRequest] ERROR: Could not access req.target" << endl;
+        }
+        
+        // CRITICAL FIX: Parse query string from BOTH target AND path
+        // Some versions of cpp-httplib put params in path, others in target
+        string querySource = target;
+        size_t queryPos = querySource.find('?');
+        
+        if (queryPos == string::npos) {
+            // Try path instead
+            querySource = path;
+            queryPos = querySource.find('?');
+            cout << "[HTTPRequest] No '?' in target, trying path" << endl;
+        }
+        
+        if (queryPos != string::npos) {
+            string queryString = querySource.substr(queryPos + 1);
+            params = parseQueryString(queryString);
+            
+            cout << "[HTTPRequest] Query string: '" << queryString << "'" << endl;
+            cout << "[HTTPRequest] Parsed " << params.size() << " parameters:" << endl;
+            for (const auto& p : params) {
+                cout << "  [" << p.first << "] = [" << p.second << "]" << endl;
+            }
+        } else {
+            cout << "[HTTPRequest] No query string found in target or path" << endl;
+        }
+        
+        cout << "[HTTPRequest] ===================" << endl;
     }
 };
 
@@ -134,13 +232,18 @@ public:
             if (!first) json += ",";
             json += "\"" + pair.first + "\":";
             
-            // Check if value is already JSON (array or object)
+            // Check if value is already JSON (array or object) - use it raw
             if (!pair.second.empty() && (pair.second[0] == '[' || pair.second[0] == '{')) {
-                // Raw JSON value - don't quote it
                 json += pair.second;
             } else {
-                // String value - quote it
-                json += "\"" + pair.second + "\"";
+                // String value - quote and escape it
+                json += "\"";
+                for (char c : pair.second) {
+                    if (c == '"') json += "\\\"";
+                    else if (c == '\\') json += "\\\\";
+                    else json += c;
+                }
+                json += "\"";
             }
             first = false;
         }

@@ -86,6 +86,7 @@ public:
     bool saveTimetable(const Timetable& timetable);
     bool getTimetable(int semester, Timetable& outTimetable);  // Changed: returns bool, uses output param
     vector<Timetable> getAllTimetables();
+    void clearTimetables();
     
     // ========== System Configuration ==========
     SystemConfig getConfig();

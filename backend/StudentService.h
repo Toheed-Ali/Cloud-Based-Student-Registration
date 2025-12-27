@@ -57,18 +57,11 @@ public:
     
     // GET /api/student/viewCourses?semester=X
     static HTTPResponse viewCourses(const HTTPRequest& req, DatabaseManager& db) {
-        // Parse query string (simplified)
+        // Get semester from query parameters
         int semester = 1;  // Default
-        size_t pos = req.path.find("semester=");
-        if (pos != string::npos) {
-            // Extract semester number - find end of number
-            size_t startPos = pos + 9;  // Length of "semester="
-            size_t endPos = req.path.find_first_not_of("0123456789", startPos);
-            if (endPos == string::npos) endPos = req.path.length();
-            
-            string semesterStr = req.path.substr(startPos, endPos - startPos);
-            cout << "[StudentService] Parsed semester string: '" << semesterStr << "'" << endl;
-            semester = stoi(semesterStr);
+        
+        if (req.params.count("semester") > 0) {
+            semester = stoi(req.params.at("semester"));
         }
         
         cout << "[StudentService] Querying courses for semester: " << semester << endl;
@@ -81,13 +74,21 @@ public:
         stringstream ss;
         ss << "[";
         for (size_t i = 0; i < courses.size(); i++) {
+            Teacher teacher;
+            string teacherName = "TBA";
+            if (!courses[i].teacherID.empty() && db.getTeacher(courses[i].teacherID, teacher)) {
+                teacherName = teacher.name;
+            }
+
             if (i > 0) ss << ",";
             ss << "{"
                << "\"courseID\":\"" << courses[i].courseID << "\","
                << "\"courseName\":\"" << courses[i].courseName << "\","
                << "\"semester\":" << courses[i].semester << ","
                << "\"teacherID\":\"" << courses[i].teacherID << "\","
+               << "\"teacherName\":\"" << teacherName << "\","
                << "\"enrollmentCount\":" << courses[i].currentEnrollmentCount << ","
+               << "\"credits\":3,"
                << "\"available\":" << (courses[i].currentEnrollmentCount < 50 ? "true" : "false")
                << "}";
         }
@@ -100,49 +101,134 @@ public:
         return HTTPServer::jsonSuccess(response);
     }
     
-    // GET /api/student/viewTimetable?studentID=X
-    static HTTPResponse viewTimetable(const HTTPRequest& req, DatabaseManager& db) {
-        // Extract student ID from query
+    // GET /api/student/getMyData?studentID=X or /api/student/mydata?studentID=X
+    static HTTPResponse getMyData(const HTTPRequest& req, DatabaseManager& db) {
         string studentID;
-        size_t pos = req.path.find("studentID=");
-        if (pos != string::npos) {
-            size_t endPos = req.path.find("&", pos);
-            if (endPos == string::npos) endPos = req.path.length();
-            studentID = req.path.substr(pos + 10, endPos - pos - 10);
+        
+        // CRITICAL FIX: Check both param formats
+        if (req.params.count("studentID") > 0) {
+            studentID = req.params.at("studentID");
         }
         
+        cout << "[StudentService] getMyData called for studentID: " << studentID << endl;
+        
         if (studentID.empty()) {
+            cout << "[StudentService] ERROR: No studentID provided" << endl;
             return HTTPServer::jsonError("Student ID required");
         }
         
         Student student;
         if (!db.getStudent(studentID, student)) {
+            cout << "[StudentService] ERROR: Student not found: " << studentID << endl;
             return HTTPServer::jsonError("Student not found", 404);
         }
+        
+        cout << "[StudentService] Found student: " << student.name << " (semester " << student.currentSemester << ")" << endl;
+        
+        // Get enrolled courses with details
+        stringstream coursesJson;
+        coursesJson << "[";
+        for (size_t i = 0; i < student.enrolledCourses.size(); i++) {
+            if (i > 0) coursesJson << ",";
+            
+            Course course;
+            if (db.getCourse(student.enrolledCourses[i], course)) {
+                Teacher teacher;
+                string teacherName = "TBA";
+                if (!course.teacherID.empty() && db.getTeacher(course.teacherID, teacher)) {
+                    teacherName = teacher.name;
+                }
+
+                coursesJson << "{"
+                           << "\"courseID\":\"" << course.courseID << "\","
+                           << "\"courseName\":\"" << course.courseName << "\","
+                           << "\"teacherID\":\"" << course.teacherID << "\","
+                           << "\"teacherName\":\"" << teacherName << "\","
+                           << "\"semester\":" << course.semester << ","
+                           << "\"enrollmentCount\":" << course.currentEnrollmentCount << ","
+                           << "\"credits\":3"
+                           << "}";
+            }
+        }
+        coursesJson << "]";
+        
+        map<string, string> response;
+        response["success"] = "true";
+        response["studentID"] = student.studentID;
+        response["name"] = student.name;
+        response["email"] = student.email;
+        response["currentSemester"] = to_string(student.currentSemester);
+        response["enrolledCourses"] = coursesJson.str();
+        
+        return HTTPServer::jsonSuccess(response);
+    }
+    
+    // GET /api/student/viewTimetable?studentID=X
+    static HTTPResponse viewTimetable(const HTTPRequest& req, DatabaseManager& db) {
+        // Restriction: Student sees timetable only after registration is closed
+        if (db.isRegistrationOpen()) {
+             return HTTPServer::jsonError("Timetable will be available after registration closes.", 403);
+        }
+
+        // CRITICAL FIX: Extract student ID from query params
+        string studentID;
+        
+        if (req.params.count("studentID") > 0) {
+            studentID = req.params.at("studentID");
+        }
+        
+        cout << "[StudentService] viewTimetable called for student: " << studentID << endl;
+        
+        if (studentID.empty()) {
+            cout << "[StudentService] viewTimetable: No studentID provided" << endl;
+            return HTTPServer::jsonError("Student ID required");
+        }
+        
+        Student student;
+        if (!db.getStudent(studentID, student)) {
+            cout << "[StudentService] Student not found: " << studentID << endl;
+            return HTTPServer::jsonError("Student not found", 404);
+        }
+        
+        cout << "[StudentService] Student found. Semester: " << student.currentSemester << endl;
+        cout << "[StudentService] Enrolled courses: " << student.enrolledCourses.size() << endl;
         
         // Get student's timetable
         Timetable timetable;
         if (!db.getTimetable(student.currentSemester, timetable)) {
-            return HTTPServer::jsonError("Timetable not generated yet");
+            cout << "[StudentService] No timetable for semester " << student.currentSemester << endl;
+            return HTTPServer::jsonError("Timetable not generated yet", 400);
         }
         
-        // Filter for student's enrolled courses
+        cout << "[StudentService] Timetable found with " << timetable.schedule.size() << " total courses" << endl;
+        
+        // CRITICAL FIX: Filter for student's enrolled courses
         stringstream ss;
         ss << "[";
         bool first = true;
+        int matchedCourses = 0;
+        
         for (const auto& sc : timetable.schedule) {
             // Check if student is enrolled in this course
-            if (find(student.enrolledCourses.begin(), student.enrolledCourses.end(), 
-                     sc.courseID) != student.enrolledCourses.end()) {
+            bool isEnrolled = false;
+            for (const auto& enrolledCourseID : student.enrolledCourses) {
+                if (enrolledCourseID == sc.courseID) {
+                    isEnrolled = true;
+                    break;
+                }
+            }
+            
+            if (isEnrolled) {
+                matchedCourses++;
+                cout << "[StudentService] Including course: " << sc.courseID << " with " << sc.slots.size() << " slots" << endl;
+                
                 if (!first) ss << ",";
                 first = false;
+                
                 ss << "{"
                    << "\"courseID\":\"" << sc.courseID << "\","
-
                    << "\"courseName\":\"" << sc.courseName << "\","
-
                    << "\"teacherName\":\"" << sc.teacherName << "\","
-
                    << "\"classroom\":" << sc.classroomID << ","
                    << "\"slots\":[";
                 
@@ -150,6 +236,9 @@ public:
                 for (size_t i = 0; i < sc.slots.size(); i++) {
                     if (i > 0) ss << ",";
                     const auto& slot = sc.slots[i];
+                    
+                    cout << "[StudentService]   Slot: day=" << slot.day << " hour=" << slot.hour << endl;
+                    
                     ss << "{\"day\":" << slot.day << ",\"hour\":" << slot.hour
                        << ",\"dayName\":\"" << slot.getDayName() << "\""
                        << ",\"time\":\"" << slot.getTimeString() << "\"}";
@@ -160,9 +249,14 @@ public:
         }
         ss << "]";
         
+        cout << "[StudentService] Matched " << matchedCourses << " enrolled courses in timetable" << endl;
+        
+        string timetableJson = ss.str();
+        cout << "[StudentService] Timetable JSON length: " << timetableJson.length() << endl;
+        
         map<string, string> response;
         response["success"] = "true";
-        response["timetable"] = ss.str();
+        response["timetable"] = timetableJson;
         
         return HTTPServer::jsonSuccess(response);
     }

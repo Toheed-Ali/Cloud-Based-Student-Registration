@@ -254,6 +254,11 @@ public:
     
     // API endpoint: POST /api/admin/generateTimetable
     static HTTPResponse generateTimetableAPI(const HTTPRequest& req, DatabaseManager& db) {
+        // Restriction: Cannot generate if registration is open
+        if (db.isRegistrationOpen()) {
+            return HTTPServer::jsonError("Cannot generate timetable while registration is open. Please close registration first.");
+        }
+
         TimetableGenerator generator(db);
         
         if (generator.generateAll()) {

@@ -32,7 +32,7 @@ private:
     string getID(const T& entity);
     
     // Write entity to data file, return offset (line number)
-    size_t writeEntity(const T& entity, size_t offset = 0);
+    size_t writeEntity(const T& entity, size_t offset = (size_t)-1);
     
     // Read entity from data file at offset (line number)
     bool readEntity(size_t offset, T& entity);
@@ -242,7 +242,7 @@ size_t IndexedStorage<T>::writeEntity(const T& entity, size_t offset) {
     // Serialize the entity to text
     string serialized = serializeEntity(entity);
     
-    if (offset == 0) {
+    if (offset == (size_t)-1) {
         // Append new entity
         offset = lines.size();
         lines.push_back(serialized);

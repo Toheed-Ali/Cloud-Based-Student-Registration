@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - University Management System</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h1>🎓 University Portal</h1>
-                <p>Student Registration & Timetable System</p>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <!-- Left Side: Form -->
+            <div class="login-left">
+                <div class="login-content">
+                    <div class="login-header">
+                        <h1 style="display: flex; align-items: center; gap: 0.75rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: var(--primary);">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                            </svg>
+                            University Portal
+                        </h1>
+                        <p>Student Registration & Timetable System</p>
+                    </div>
+
+                    <div id="error-message" class="alert alert-error hidden"></div>
+
+                    <form id="login-form">
+                        <div class="input-group">
+                            <input type="email" id="email" class="styled-input" placeholder="Email" required
+                                autocomplete="email">
+                        </div>
+
+                        <div class="input-group password-group">
+                            <input type="password" id="password" class="styled-input" placeholder="Password" required
+                                autocomplete="current-password">
+                            <button type="button" id="toggle-password" class="password-toggle" tabindex="-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" style="opacity: 0.5;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="login-btn">
+                            Sign In
+                        </button>
+                    </form>
+
+                    <div id="loading-spinner" class="spinner hidden"></div>
+                </div>
             </div>
 
-            <div id="error-message" class="alert alert-error hidden"></div>
-
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        class="form-control" 
-                        placeholder="your.email@itu.edu.pk" 
-                        required
-                        autocomplete="email"
-                    >
+            <!-- Right Side: Image -->
+            <div class="login-right">
+                <div class="image-overlay">
+                    <h2>Finally, all your work in one place.</h2>
+                    <p>Manage courses, students, and timetables efficiently.</p>
                 </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        class="form-control" 
-                        placeholder="••••••••" 
-                        required
-                        autocomplete="current-password"
-                    >
-                </div>
-
-                <button type="submit" class="btn btn-primary" id="login-btn">
-                    Log In
-                </button>
-            </form>
-
-            <div id="loading-spinner" class="spinner hidden"></div>
-
-            <div class="mt-2 text-center" style="color: var(--text-light); font-size: 0.875rem;">
-                <p><strong>Demo Accounts:</strong></p>
-                <p>Admin: admin@university.com / admin123</p>
-                <p>Student: bscs24119@itu.edu.pk / 4119</p>
-                <p>Teacher: T1100@itu.edu.pk / 1100</p>
             </div>
         </div>
     </div>
@@ -62,36 +72,45 @@
     <script>
         const loginForm = document.getElementById('login-form');
         const loginBtn = document.getElementById('login-btn');
+        const toggleBtn = document.getElementById('toggle-password');
+        const passInput = document.getElementById('password');
+
+        toggleBtn.addEventListener('click', () => {
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
+            // Toggle Icon logic
+            if (type === 'text') {
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye-off"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+                toggleBtn.style.opacity = '1';
+            } else {
+                toggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+                toggleBtn.style.opacity = '0.5';
+            }
+        });
 
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             loginBtn.disabled = true;
-            loginBtn.textContent = 'Logging in...';
+            loginBtn.textContent = 'Signing In...';
             showLoading(true);
 
             try {
                 const response = await api.login(email, password);
-                
-                // Redirect based on role
                 const role = response.role;
-                if (role === 'ADMIN') {
-                    window.location.href = 'admin.html';
-                } else if (role === 'STUDENT') {
-                    window.location.href = 'student.html';
-                } else if (role === 'TEACHER') {
-                    window.location.href = 'teacher.html';
-                }
+                if (role === 'ADMIN') window.location.href = 'admin.html';
+                else if (role === 'STUDENT') window.location.href = 'student.html';
+                else if (role === 'TEACHER') window.location.href = 'teacher.html';
             } catch (error) {
-                showError(error.message || 'Login failed. Please check your credentials.');
+                showError(error.message || 'Login failed.');
                 loginBtn.disabled = false;
-                loginBtn.textContent = 'Log In';
+                loginBtn.textContent = 'Sign In';
                 showLoading(false);
             }
         });
     </script>
 </body>
+
 </html>
