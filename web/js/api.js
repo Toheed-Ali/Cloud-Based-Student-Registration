@@ -1,5 +1,5 @@
 // API Configuration
-const API_URL = 'http://localhost:8080/api'; // Change to your AWS EC2 IP when deployed
+const API_URL = 'http://18.223.44.164:8080/api';
 
 // API Client
 class APIClient {
