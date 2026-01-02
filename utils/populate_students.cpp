@@ -1,7 +1,7 @@
 #include "../database/DatabaseManager.h"
 #include "../backend/utils/SHA256.h"
 #include <iostream>
-<parameter name="sstream">
+#include <sstream>
 #include <vector>
 #include <string>
 #include <fstream>
