@@ -29,61 +29,12 @@ add_executable(server
 
 target_link_libraries(server database)
 
-# Frontend CLI applications
-add_executable(admin_cli
-    frontend/admin_cli.cpp
-)
-
-add_executable(student_cli
-    frontend/student_cli.cpp
-)
-
-add_executable(teacher_cli
-    frontend/teacher_cli.cpp
-)
-
-target_link_libraries(admin_cli database)
-target_link_libraries(student_cli database)
-target_link_libraries(teacher_cli database)
-
-# Utility programs
+# Utility: populate_courses
 add_executable(populate_courses
     utils/populate_courses.cpp
 )
 
-add_executable(populate_students
-    utils/populate_students.cpp
-)
-
-add_executable(populate_teachers
-    utils/populate_teachers.cpp
-)
-
 target_link_libraries(populate_courses database)
-target_link_libraries(populate_students database)
-target_link_libraries(populate_teachers database)
-
-# Test IndexedStorage
-add_executable(test_indexed_storage
-    tests/test_indexed_storage.cpp
-)
-
-target_link_libraries(test_indexed_storage database)
-
-
-# Test executable for database (DISABLED - needs API update)
-# add_executable(test_database
-#     tests/test_database.cpp
-# )
-# 
-# target_link_libraries(test_database database)
-
-# Test executable for backend (integration tests) (DISABLED - needs API update)
-# add_executable(test_backend
-#     tests/test_backend.cpp
-# )
-# 
-# target_link_libraries(test_backend database)
 
 # Output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
