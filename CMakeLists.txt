@@ -50,6 +50,13 @@ add_executable(populate_students
 
 target_link_libraries(populate_students database)
 
+# Utility: enroll_students
+add_executable(enroll_students
+    utils/enroll_students.cpp
+)
+
+target_link_libraries(enroll_students database)
+
 # Output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
