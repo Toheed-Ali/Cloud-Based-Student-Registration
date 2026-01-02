@@ -88,7 +88,6 @@ int main() {
         course.courseName = parts[1];
         course.semester = stoi(parts[2]);
         course.teacherID = parts[3];
-        course.credits = 3; // Default credits
         course.currentEnrollmentCount = 0;
         // enrolledStudents will be empty initially
         
