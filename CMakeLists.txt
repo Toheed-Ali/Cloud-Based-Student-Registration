@@ -57,6 +57,13 @@ add_executable(enroll_students
 
 target_link_libraries(enroll_students database)
 
+# Utility: admin_enroll (bypasses registration window)
+add_executable(admin_enroll
+    utils/admin_enroll.cpp
+)
+
+target_link_libraries(admin_enroll database)
+
 # Output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
