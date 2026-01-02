@@ -36,6 +36,13 @@ add_executable(populate_courses
 
 target_link_libraries(populate_courses database)
 
+# Utility: populate_teachers
+add_executable(populate_teachers
+    utils/populate_teachers.cpp
+)
+
+target_link_libraries(populate_teachers database)
+
 # Output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
