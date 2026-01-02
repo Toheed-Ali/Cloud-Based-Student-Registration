@@ -148,7 +148,15 @@ async function loadRegistrationWindow() {
                 const startTime = parseInt(data.startTime);
                 const endTime = parseInt(data.endTime);
 
-                isRegistrationOpen = data.isOpen === 'true' && now >= startTime && now <= endTime;
+                // Fix: Registration is open if we're within the time window (when times are set)
+                // OR if isOpen is true and no time window is configured
+                if (startTime > 0 && endTime > 0) {
+                    // Time-based registration window
+                    isRegistrationOpen = now >= startTime && now <= endTime;
+                } else {
+                    // Manual toggle (no time window set)
+                    isRegistrationOpen = data.isOpen === 'true';
+                }
 
                 const statusEl = document.getElementById('reg-status-text');
                 const badgeEl = document.getElementById('registration-timer');

@@ -174,7 +174,14 @@ public:
         response["endTime"] = to_string(config.registrationEndTime);
         response["isOpen"] = config.isRegistrationOpen ? "true" : "false";
         
-        return HTTPServer::jsonSuccess(response);
+        HTTPResponse httpRes = HTTPServer::jsonSuccess(response);
+        
+        // CRITICAL: Add cache-prevention headers to ensure all students see the same status
+        httpRes.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0";
+        httpRes.headers["Pragma"] = "no-cache";
+        httpRes.headers["Expires"] = "0";
+        
+        return httpRes;
     }
     
     // GET /api/admin/viewAllStudents

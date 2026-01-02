@@ -440,7 +440,17 @@ async function checkExistingTimetables() {
             const now = Math.floor(Date.now() / 1000);
             const start = parseInt(data.startTime);
             const end = parseInt(data.endTime);
-            const isOpen = (start > 0 && end > 0 && now >= start && now <= end);
+
+            // Fix: Match student dashboard logic
+            // Registration is open if within time window OR manually enabled (when no times set)
+            let isOpen;
+            if (start > 0 && end > 0) {
+                // Time-based window
+                isOpen = now >= start && now <= end;
+            } else {
+                // Manual toggle
+                isOpen = data.isOpen === 'true';
+            }
 
             if (isOpen) {
                 console.log('[Timetable] Registration is OPEN. Blocking generation view.');
@@ -755,15 +765,27 @@ async function loadRegistrationWindow() {
             const endTime = parseInt(data.endTime);
 
             if (startTime > 0) {
-                const startParams = new Date(startTime * 1000);
-                startParams.setMinutes(startParams.getMinutes() - startParams.getTimezoneOffset());
-                document.getElementById('reg-start-time').value = startParams.toISOString().slice(0, 16);
+                const startDate = new Date(startTime * 1000);
+                // datetime-local expects format: YYYY-MM-DDTHH:mm
+                // toISOString() gives UTC time, but we need local time
+                const year = startDate.getFullYear();
+                const month = String(startDate.getMonth() + 1).padStart(2, '0');
+                const day = String(startDate.getDate()).padStart(2, '0');
+                const hours = String(startDate.getHours()).padStart(2, '0');
+                const minutes = String(startDate.getMinutes()).padStart(2, '0');
+                const localDateTimeString = `${year}-${month}-${day}T${hours}:${minutes}`;
+                document.getElementById('reg-start-time').value = localDateTimeString;
             }
 
             if (endTime > 0) {
-                const endParams = new Date(endTime * 1000);
-                endParams.setMinutes(endParams.getMinutes() - endParams.getTimezoneOffset());
-                document.getElementById('reg-end-time').value = endParams.toISOString().slice(0, 16);
+                const endDate = new Date(endTime * 1000);
+                const year = endDate.getFullYear();
+                const month = String(endDate.getMonth() + 1).padStart(2, '0');
+                const day = String(endDate.getDate()).padStart(2, '0');
+                const hours = String(endDate.getHours()).padStart(2, '0');
+                const minutes = String(endDate.getMinutes()).padStart(2, '0');
+                const localDateTimeString = `${year}-${month}-${day}T${hours}:${minutes}`;
+                document.getElementById('reg-end-time').value = localDateTimeString;
             }
         }
     } catch (error) {
