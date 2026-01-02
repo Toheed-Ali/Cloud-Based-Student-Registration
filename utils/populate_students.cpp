@@ -1,15 +1,14 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <map>
 #include "../database/DatabaseManager.h"
-#include "../database/DataModels.h"
 #include "../backend/utils/SHA256.h"
+#include <iostream>
+<parameter name="sstream">
+#include <vector>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
-// Split string by delimiter
+// Helper function to split string by delimiter
 vector<string> split(const string& str, char delimiter) {
     vector<string> tokens;
     stringstream ss(str);
@@ -21,128 +20,119 @@ vector<string> split(const string& str, char delimiter) {
 }
 
 int main() {
-    cout << "========================================" << endl;
-    cout << "   Student Population Utility" << endl;
-    cout << "========================================\n" << endl;
+    cout << "=== Student Population Utility ===" << endl;
+    cout << "Loading student data from file..." << endl;
     
-    // Initialize database
-    DatabaseManager db("data");
-    db.initialize();
-    
-    // Open data file
-    ifstream dataFile("../utils/students_data.txt");
-    if (!dataFile.is_open()) {
-        cerr << "Error: Could not open students_data.txt" << endl;
-        cerr << "Make sure the file exists in utils/ directory" << endl;
+    // Read student data from file
+    ifstream infile("students_data.txt");
+    if (!infile.is_open()) {
+        cerr << "ERROR: Could not open students_data.txt" << endl;
+        cerr << "Please create this file with student data in format:" << endl;
+        cerr << "studentID|email|name|semester|courses|phone|timestamp" << endl;
         return 1;
     }
     
-    int added = 0;
-    int skipped = 0;
-    int enrolled = 0;
+    vector<string> studentData;
     string line;
+    while (getline(infile, line)) {
+        if (!line.empty()) {
+            studentData.push_back(line);
+        }
+    }
+    infile.close();
     
-    cout << "Reading student data from file...\n" << endl;
+    cout << "Found " << studentData.size() << " students in file" << endl;
+    cout << "Initializing database..." << endl;
     
-    while (getline(dataFile, line)) {
-        if (line.empty()) continue;
+    DatabaseManager db("./data");
+    db.initialize();
+    
+    int successCount = 0;
+    int failCount = 0;
+    
+    cout << "\nAdding " << studentData.size() << " students..." << endl;
+    cout << "----------------------------------------" << endl;
+    
+    for (const auto& line : studentData) {
+        vector<string> parts = split(line, '|');
         
-        // Parse line: StudentID|Email|Name|Semester|Courses|Contact|Timestamp
-        vector<string> fields = split(line, '|');
-        if (fields.size() < 6) {
-            cerr << "Skipping invalid line: " << line << endl;
+        if (parts.size() < 7) {
+            cerr << "ERROR: Invalid student data (expected 7 fields): " << line << endl;
+            failCount++;
             continue;
         }
         
-        string studentID = fields[0];
-        string email = fields[1];        string name = fields[2];
-        int semester = stoi(fields[3]);
-        string coursesStr = fields[4];
-        string contact = fields[5];
+        string studentID = parts[0];
+        string email = parts[1];
+        string name = parts[2];
+        int semester = stoi(parts[3]);
+        string coursesStr = parts[4];  // Comma-separated course IDs
+        string phone = parts[5];
+        time_t admission = stol(parts[6]);
         
         // Parse enrolled courses
-        vector<string> courses = split(coursesStr, ',');
+        vector<string> courses;
+        if (!coursesStr.empty()) {
+            stringstream ss(coursesStr);
+            string course;
+            while (getline(ss, course, ',')) {
+                courses.push_back(course);
+            }
+        }
         
-        // Create User for authentication (password = last 4 digits of student ID)
+        // Check if student already exists
+        Student existingStudent;
+        if (db.getStudent(studentID, existingStudent)) {
+            cout << "[SKIP] " << studentID << " - Already exists" << endl;
+            continue;
+        }
+        
+        // Create User account for student
         User user;
         user.userID = studentID;
         user.email = email;
-        user.name = name;
+        // Default password is last 4 digits of student ID
+        string password = studentID.substr(studentID.length() - 4);
+        user.passwordHash = SHA256::hash(password);
         user.role = UserRole::STUDENT;
-        // Default password: last 4 digits of ID
-        string defaultPassword = studentID.substr(studentID.length() - 4);
-        user.passwordHash = SHA256::hash(defaultPassword);
+        user.name = name;
         
+        // Add user account
         if (!db.createUser(user)) {
-            cout << "✗ User exists: " << studentID << endl;
-            skipped++;
+            cerr << "[FAIL] " << studentID << " - Failed to create user account" << endl;
+            failCount++;
             continue;
         }
         
-        // Create Student
+        // Create Student record
         Student student;
         student.studentID = studentID;
         student.email = email;
         student.name = name;
         student.currentSemester = semester;
-        student.contactInfo = contact;
         student.enrolledCourses = courses;
-        student.dateOfAdmission = time(nullptr);
+        student.contactInfo = phone;
+        student.dateOfAdmission = admission;
         
+        // Add student
         if (db.addStudent(student)) {
-            cout << "✓ Added: " << studentID << " - " << name << " (Sem " << semester << ")";
-            cout << " → Pre-enrolled in " << courses.size() << " courses" << endl;
-            added++;
-            enrolled += courses.size();
+            cout << "[OK] " << studentID << " - " << name 
+                 << " (Semester " << semester << ", " << courses.size() << " courses)" << endl;
+            successCount++;
         } else {
-            cout << "✗ Failed to add student: " << studentID << endl;
-            skipped++;
+            cerr << "[FAIL] " << studentID << " - Failed to add student record" << endl;
+            failCount++;
         }
     }
     
-    dataFile.close();
-    
-    cout << "\n--- Processing Course Enrollments ---" << endl;
-    cout << "Updating course enrollment lists...\n" << endl;
-    
-    // Now update all courses to include enrolled students
-    vector<Student> allStudents = db.getAllStudents();
-    map<string, vector<string>> courseEnrollments; // courseID -> list of studentIDs
-    
-    // Collect all enrollments
-    for (const auto& student : allStudents) {
-        for (const auto& courseID : student.enrolledCourses) {
-            courseEnrollments[courseID].push_back(student.studentID);
-        }
-    }
-    
-    // Update each course
-    int coursesUpdated = 0;
-    for (const auto& pair : courseEnrollments) {
-        string courseID = pair.first;
-        const vector<string>& studentIDs = pair.second;
-        
-        Course course;
-        if (db.getCourse(courseID, course)) {
-            course.enrolledStudents = studentIDs;
-            course.currentEnrollmentCount = studentIDs.size();
-            
-            if (db.updateCourse(course)) {
-                cout << "✓ Updated " << courseID << ": " << studentIDs.size() << " students enrolled" << endl;
-                coursesUpdated++;
-            }
-        }
-    }
-    
-    cout << "\n========================================" << endl;
+    cout << "----------------------------------------" << endl;
     cout << "Summary:" << endl;
-    cout << "  Students added: " << added << endl;
-    cout << "  Students skipped: " << skipped << endl;
-    cout << "  Total enrollments: " << enrolled << endl;
-    cout << "  Courses updated: " << coursesUpdated << endl;
-    cout << "========================================" << endl;
-    cout << "\nDefault password for all students: last 4 digits of Student ID" << endl;
-    cout << "Example: BSCS24119 → password: 4119" << endl;
+    cout << "  Successfully added: " << successCount << endl;
+    cout << "  Failed: " << failCount << endl;
+    cout << "  Total students: " << studentData.size() << endl;
+    cout << "\nDefault password for all students: Last 4 digits of student ID" << endl;
+    cout << "  Example: BSCS24119 -> password: 4119" << endl;
+    cout << "\nDone!" << endl;
     
     return 0;
 }
