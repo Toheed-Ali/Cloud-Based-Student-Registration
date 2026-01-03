@@ -68,10 +68,7 @@ IndexedStorage<T>::IndexedStorage(const string& baseName)
     : dataFilename(baseName + ".dat"),
       btreeFilename(baseName + ".btree"),
       hashFilename(baseName + ".hash") {
-    
-    // Comment out broken index loading
-    // load();
-    
+
     cout << "[IndexedStorage] Loading from: " << dataFilename << endl;
     
     // REBUILD INDEXES: Read all entities from .dat and rebuild B-Tree/Hash Table
@@ -172,12 +169,50 @@ bool IndexedStorage<T>::update(const T& entity) {
 
 template<typename T>
 bool IndexedStorage<T>::remove(const string& id) {
-    // Remove from both indexes
-    bool removed1 = hashTable.remove(id);
-    btree.remove(id);
+    // First check if entity exists
+    size_t* offsetPtr = hashTable.get(id);
+    if (offsetPtr == nullptr) {
+        return false;  // Doesn't exist
+    }
     
-    // Note: We don't actually delete from data file (space will be reused)
-    return removed1;
+    // Read all entities from file (excluding the one to delete)
+    vector<T> allEntities;
+    auto pairs = btree.getAllPairs();
+    
+    for (const auto& pair : pairs) {
+        if (pair.first != id) {  // Skip the one we're deleting
+            T entity;
+            if (readEntity(pair.second, entity)) {
+                allEntities.push_back(entity);
+            }
+        }
+    }
+    
+    // Clear indexes
+    btree.clear();
+    hashTable.clear();
+    
+    // Rewrite data file with remaining entities
+    ofstream outFile(dataFilename);
+    if (!outFile.is_open()) {
+        cerr << "[IndexedStorage] Failed to rewrite data file: " << dataFilename << endl;
+        return false;
+    }
+    
+    size_t newOffset = 0;
+    for (const auto& entity : allEntities) {
+        string entityID = getID(entity);
+        string serialized = serializeEntity(entity);
+        outFile << serialized << "\n";
+        
+        // Rebuild indexes with new offsets
+        btree.insert(entityID, newOffset);
+        hashTable.insert(entityID, newOffset);
+        newOffset++;
+    }
+    
+    outFile.close();
+    return true;
 }
 
 template<typename T>
